@@ -3,6 +3,60 @@ import os
 import pandas as pd
 import json
 import glob
+import chardet
+
+def detectar_codificacion(archivo):
+    """
+    Detecta la codificación de un archivo.
+    
+    Args:
+        archivo (str): Ruta al archivo
+    
+    Returns:
+        str: Codificación detectada
+    """
+    with open(archivo, 'rb') as f:
+        resultado = chardet.detect(f.read())
+    
+    # Codificación detectada o utf-8 como respaldo
+    return resultado['encoding'] or 'utf-8'
+
+def leer_csv_seguro(archivo):
+    """
+    Lee un archivo CSV probando diferentes codificaciones.
+    
+    Args:
+        archivo (str): Ruta al archivo CSV
+    
+    Returns:
+        pandas.DataFrame: DataFrame con los datos del CSV, o None si falla
+    """
+    # Lista de codificaciones a probar, en orden de preferencia
+    codificaciones = ['utf-8', 'latin1', 'ISO-8859-1', 'cp1252', 'windows-1252']
+    
+    # Intentar detectar automáticamente la codificación
+    try:
+        codificacion_detectada = detectar_codificacion(archivo)
+        if codificacion_detectada and codificacion_detectada.lower() not in [c.lower() for c in codificaciones]:
+            # Añadir la codificación detectada al principio de la lista
+            codificaciones.insert(0, codificacion_detectada)
+    except Exception as e:
+        print(f"Error al detectar codificación: {e}")
+    
+    # Probar cada codificación
+    for encoding in codificaciones:
+        try:
+            df = pd.read_csv(archivo, encoding=encoding)
+            print(f"Archivo leído con codificación: {encoding} - {archivo}")
+            return df
+        except UnicodeDecodeError:
+            continue
+        except Exception as e:
+            print(f"Error al leer {archivo} con codificación {encoding}: {e}")
+            continue
+    
+    print(f"ERROR: No se pudo leer el archivo {archivo} con ninguna codificación probada")
+    return None
 
 def crear_diccionario_revistas(carpeta_base):
     """
@@ -29,41 +83,44 @@ def crear_diccionario_revistas(carpeta_base):
     
     # Procesar archivos de áreas
     for archivo in archivos_areas:
-        nombre_area = os.path.splitext(os.path.basename(archivo))[0]
-        try:
-            df = pd.read_csv(archivo, encoding='utf-8')
-            # Asumimos que cada archivo tiene una columna con los títulos de revistas
-            # Normalizar nombres de revistas (convertir a minúsculas)
-            for titulo in df.iloc[:, 0].str.lower():
-                if titulo not in revistas:
-                    revistas[titulo] = {"areas": [], "catalogos": []}
-                # Añadir área a la revista si no está ya
-                if nombre_area not in revistas[titulo]["areas"]:
-                    revistas[titulo]["areas"].append(nombre_area)
-        except Exception as e:
-            print(f"Error al procesar el archivo de áreas {archivo}: {e}")
+        nombre_area = os.path.splitext(os.path.basename(archivo))[0].upper()
+        df = leer_csv_seguro(archivo)
+        
+        if df is not None and not df.empty:
+            # Verificar que el DataFrame tenga al menos una columna
+            if df.shape[1] > 0:
+                # Normalizar nombres de revistas (convertir a minúsculas)
+                for titulo in df.iloc[:, 0].astype(str).str.lower().str.strip():
+                    if titulo and not pd.isna(titulo):
+                        if titulo not in revistas:
+                            revistas[titulo] = {"areas": [], "catalogos": []}
+                        # Añadir área a la revista si no está ya
+                        if nombre_area not in revistas[titulo]["areas"]:
+                            revistas[titulo]["areas"].append(nombre_area)
     
     # Procesar archivos de catálogos
     archivos_catalogos = glob.glob(os.path.join(carpeta_catalogos, "*.csv"))
     
     for archivo in archivos_catalogos:
-        nombre_catalogo = os.path.splitext(os.path.basename(archivo))[0]
-        try:
-            df = pd.read_csv(archivo, encoding='utf-8')
-            # Normalizar nombres de revistas (convertir a minúsculas)
-            for titulo in df.iloc[:, 0].str.lower():
-                if titulo not in revistas:
-                    # Si la revista aparece en un catálogo pero no en áreas, la creamos
-                    revistas[titulo] = {"areas": [], "catalogos": []}
-                # Añadir catálogo a la revista si no está ya
-                if nombre_catalogo not in revistas[titulo]["catalogos"]:
-                    revistas[titulo]["catalogos"].append(nombre_catalogo)
-        except Exception as e:
-            print(f"Error al procesar el archivo de catálogos {archivo}: {e}")
+        nombre_catalogo = os.path.splitext(os.path.basename(archivo))[0].upper()
+        df = leer_csv_seguro(archivo)
+        
+        if df is not None and not df.empty:
+            # Verificar que el DataFrame tenga al menos una columna
+            if df.shape[1] > 0:
+                # Normalizar nombres de revistas (convertir a minúsculas)
+                for titulo in df.iloc[:, 0].astype(str).str.lower().str.strip():
+                    if titulo and not pd.isna(titulo):
+                        if titulo not in revistas:
+                            # Si la revista aparece en un catálogo pero no en áreas, la creamos
+                            revistas[titulo] = {"areas": [], "catalogos": []}
+                        # Añadir catálogo a la revista si no está ya
+                        if nombre_catalogo not in revistas[titulo]["catalogos"]:
+                            revistas[titulo]["catalogos"].append(nombre_catalogo)
     
     return revistas
 
-def guardar_como_json(datos, carpeta_destino, nombre_archivo="revistas.json"):
+def guardar_como_json(datos, carpeta_destino, nombre_archivo):
     """
     Guarda un diccionario como archivo JSON.
     
@@ -86,10 +143,10 @@ def guardar_como_json(datos, carpeta_destino, nombre_archivo="revistas.json"):
 
 def main():
     # Carpeta base donde se encuentran las subcarpetas 'areas' y 'catalogos'
-    carpeta_base = "datos\csv"  # Cambia esto a la ruta de tu carpeta base
+    carpeta_base = "datos\csv"
     
     # Carpeta de destino para el archivo JSON
-    carpeta_json = "datos\json"  # Cambia esto a la ruta de tu carpeta de destino
+    carpeta_json = "datos\json"
     
     try:
         # Crear el diccionario de revistas
@@ -113,7 +170,7 @@ def main():
             print(f"  {i+1}. '{titulo}': {info}")
         
         # Guardar como JSON
-        guardar_como_json(revistas, carpeta_json)
+        guardar_como_json(revistas, carpeta_json, "revistas.json")
         
     except Exception as e:
         print(f"Error en el procesamiento: {e}")

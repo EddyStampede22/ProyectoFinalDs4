@@ -1,0 +1,21 @@
+{
+    "2d materials": {
+      "areas": [
+        "CIENCIAS_BIO RADGRIDEXPORT",
+        "CIENCIAS_EXA RADGRIDEXPORT",
+        "ING RADGRIDEXPORT"
+      ],
+      "catalogos": [
+        "JCR_RADGRIDEXPORT",
+        "SCOPUS_RADGRIDEXPORT"
+      ]
+    },
+    "3 biotech": {
+      "areas": [
+        "CIENCIAS_BIO RADGRIDEXPORT"
+      ],
+      "catalogos": [
+        "JCR_RADGRIDEXPORT"
+      ]
+    }
+}
