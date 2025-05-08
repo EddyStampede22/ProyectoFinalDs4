@@ -86,7 +86,7 @@ def extraer_enlace(url_busqueda,titulo:str):
                         url_extraida = enlace['href']
                         return url_extraida
                     else:
-                        print(f"El título '{titulo}' no coincide con el encontrado: '{texto}'")
+                        return None
 
                 else:
                     print("No se encontró el enlace o no tiene atributo href")
@@ -157,8 +157,6 @@ def extraer_datos_finales(url_final,nombre_revista,datos_revista:dict):
 
                             
     return datos_revista
-                            
-                        
 
 
 if __name__ == "__main__":
@@ -168,19 +166,19 @@ if __name__ == "__main__":
     url_busqueda = (
         "https://www.scimagojr.com/journalsearch.php?q=+"
     )
-    palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
+    #palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
     revistas = leer_json_seguro("revis.json")  # libros es un dict: {titulo: {...}, ...}
     catalogo = leer_json_seguro("revistas_scimago.json") # libros es un dict: {titulo: {...}, ...}
     mis_revistas = {}
-    buscar_palabra=palabra.replace(" ", "+").lower()
+    #buscar_palabra=palabra.replace(" ", "+").lower()
     #print(buscar_palabra)
-    nueva_palabra=url_busqueda+buscar_palabra
+    #nueva_palabra=url_busqueda+buscar_palabra
     #print(nueva_palabra)
-    palabra_clave=extraer_enlace(nueva_palabra,palabra)
+    #palabra_clave=extraer_enlace(nueva_palabra,palabra)
     #print(palabra_clave)
-    busqueda_maxima=url+palabra_clave
-    print(busqueda_maxima)
-'''    for titulo in revistas:
+    #busqueda_maxima=url+palabra_clave
+    #print(busqueda_maxima)
+    for titulo in revistas:
         # aquí 'titulo' es ya la clave (el nombre del libro)
         if titulo in catalogo:
             # Si la revista ya está en el JSON, no la vuelvo a añadi
@@ -190,11 +188,14 @@ if __name__ == "__main__":
             #print(buscar_palabra)
             nueva_palabra=url_busqueda+buscar_palabra
             #print(nueva_palabra)
-            palabra_clave=extraer_enlace(nueva_palabra)
+            palabra_clave=extraer_enlace(nueva_palabra,titulo)
             #print(palabra_clave)
+            if palabra_clave is None:
+                print(f"No se encontró la revista {titulo} en SCIMAGO")
+                continue
             busqueda_maxima=url+palabra_clave
             #print(busqueda_maxima)
             revista=extraer_datos_finales(busqueda_maxima,titulo,mis_revistas)
-    leer_csv.guardar_como_json(revista, "revistas_scimago.json")'''
+    leer_csv.guardar_como_json(revista, "revistas_scimago.json")
 
     
