@@ -17,7 +17,11 @@
       "Journals"
     ],
     "ISSN": "07434618, 14773848",
-    "Homepage": "https://www.tandfonline.com/journals/iaac20"
+    "Homepage": "https://www.tandfonline.com/journals/iaac20",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=28033",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=28033&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=28033\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aacl bioflux": {
     "Subject Area and Category": {
@@ -37,7 +41,11 @@
     "Publication type": [
       "Journals"
     ],
-    "ISSN": "18448143, 18449166"
+    "ISSN": "18448143, 18449166",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=19300156808",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=19300156808&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=19300156808\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aacn advanced critical care": {
     "Subject Area and Category": {
@@ -57,7 +65,11 @@
       "Journals"
     ],
     "ISSN": "15597768, 15597776",
-    "Homepage": "http://aacnacconline.org/"
+    "Homepage": "http://aacnacconline.org/",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=4700152443",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=4700152443&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=4700152443\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aana journal": {
     "Subject Area and Category": {
@@ -78,7 +90,11 @@
       "Journals"
     ],
     "ISSN": "00946354, 21625239",
-    "Homepage": "https://www.aana.com/publications/aana-journal"
+    "Homepage": "https://www.aana.com/publications/aana-journal",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=26729",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=26729&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=26729\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aao journal": {
     "Subject Area and Category": {
@@ -100,7 +116,11 @@
       "Journals"
     ],
     "ISSN": "23755717, 23755776",
-    "Homepage": "https://www.academyofosteopathy.org/aao-journal"
+    "Homepage": "https://www.academyofosteopathy.org/aao-journal",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=5100155055",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=5100155055&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=5100155055\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aaps journal": {
     "Subject Area and Category": {
@@ -116,7 +136,11 @@
       "Journals"
     ],
     "ISSN": "15507416",
-    "Homepage": "https://www.springer.com/journal/12248"
+    "Homepage": "https://www.springer.com/journal/12248",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=4000148019",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=4000148019&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=4000148019\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aaps pharmscitech": {
     "Subject Area and Category": {
@@ -144,7 +168,11 @@
       "Journals"
     ],
     "ISSN": "15309932",
-    "Homepage": "https://www.springer.com/journal/12249"
+    "Homepage": "https://www.springer.com/journal/12249",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=19374",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=19374&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=19374\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   },
   "aatcc review": {
     "Subject Area and Category": {
@@ -165,6 +193,10 @@
       "Trade Journals"
     ],
     "ISSN": "15328813, 23305525",
-    "Homepage": "https://www.aatcc.org/pubs/review/#"
+    "Homepage": "https://www.aatcc.org/pubs/review/#",
+    "Widget": {
+      "Imagen": "https://www.scimagojr.com/journal_img.php?id=15286",
+      "HTML Code": "<a href=\"https://www.scimagojr.com/journalsearch.php?q=15286&amp;tip=sid&amp;exact=no\" title=\"SCImago Journal &amp; Country Rank\"><img border=\"0\" src=\"https://www.scimagojr.com/journal_img.php?id=15286\" alt=\"SCImago Journal &amp; Country Rank\"  /></a>"
+    }
   }
 }

@@ -91,7 +91,6 @@ def extraer_enlace(url_busqueda,titulo:str):
                     else:
                         return None
                 else:
-                    print("No se encontró el enlace")
                     return None
             else:
                 print("No se encontró el div interior")
@@ -104,8 +103,8 @@ def extraer_datos_finales(url_final,nombre_revista,datos_revista:dict):
     datos_revista[nombre_revista]={}
     soup = get_soup(url_final)
     if soup:
-       main_content=soup.find('div', class_='background')
-       if main_content:
+        main_content=soup.find('div', class_='background')
+        if main_content:
             segundo_div = main_content.find('div', class_='journalgrid')
             if segundo_div:
                 divs=segundo_div.find_all('div')
@@ -154,10 +153,29 @@ def extraer_datos_finales(url_final,nombre_revista,datos_revista:dict):
                                     if i.text.strip() =="Homepage":
                                         a=i.find('a')['href']
                                         datos_revista[nombre_revista]["Homepage"]=a
-                    
-
-
-                            
+            else:
+                print("No se encontró el segundo div")
+                return None
+        else:
+            print("No se encontró el div principal")
+            return None
+       
+       # Extraer el widget
+        datos_revista[nombre_revista]["Widget"]={}
+        content_widget=soup.find_all('div', class_='dashboard')
+        if len(content_widget)!=0:
+            for content in content_widget:
+                content_cell=content.find_all('div', class_='cell1x1 transparentcell')
+            for i in content_cell:
+                if i.find('img',class_='imgwidget'):
+                    direccion_img='https://www.scimagojr.com/'+i.find('img',class_='imgwidget')['src']
+                    datos_revista[nombre_revista]['Widget']['Imagen']=direccion_img
+                if i.find('div',class_='widgetlegend'):
+                    html_content=i.find('div',class_='widgetlegend').find('input')['value']
+                    if html_content:
+                        datos_revista[nombre_revista]['Widget']['HTML Code']=html_content
+        else:
+            return None            
     return datos_revista
 
 
@@ -168,7 +186,7 @@ if __name__ == "__main__":
     url_busqueda = (
         "https://www.scimagojr.com/journalsearch.php?q=+"
     )
-    #palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
+    palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
     revistas = leer_json_seguro("revis.json")  # libros es un dict: {titulo: {...}, ...}
     catalogo = leer_json_seguro("revistas_scimago.json") # libros es un dict: {titulo: {...}, ...}
     mis_revistas = {}
@@ -180,6 +198,8 @@ if __name__ == "__main__":
     #print(palabra_clave)
     #busqueda_maxima=url+palabra_clave
     #print(busqueda_maxima)
+    #revis=extraer_datos_finales(busqueda_maxima,palabra,mis_revistas)
+    #print(revis)
     for titulo in revistas:
         # aquí 'titulo' es ya la clave (el nombre del libro)
         if titulo in catalogo:
@@ -198,6 +218,7 @@ if __name__ == "__main__":
             busqueda_maxima=url+palabra_clave
             #print(busqueda_maxima)
             revista=extraer_datos_finales(busqueda_maxima,titulo,mis_revistas)
-    leer_csv.guardar_como_json(revista, "revistas_scimago.json")
-
-    
+    if mis_revistas == {}:
+        print("No se encontraron revistas nuevas en SCIMAGO")
+    else:
+        leer_csv.guardar_como_json(revista, "revistas_scimago.json")
