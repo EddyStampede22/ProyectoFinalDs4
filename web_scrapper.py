@@ -80,16 +80,18 @@ def extraer_enlace(url_busqueda,titulo:str):
             # Si encontramos el div interior, buscamos el enlace
             if div_interior:
                 enlace = div_interior.find('a')
-                if enlace.find('span', class_='jrnlname'):
-                    texto = enlace.find('span', class_='jrnlname').text.strip()
-                    if texto.lower() == titulo.lower():
-                        url_extraida = enlace['href']
-                        return url_extraida
+                if enlace is not None:
+                    if enlace.find('span', class_='jrnlname'):
+                        texto = enlace.find('span', class_='jrnlname').text.strip()
+                        if texto.lower() == titulo.lower():
+                            url_extraida = enlace['href']
+                            return url_extraida
+                        else:
+                            return None
                     else:
                         return None
-
                 else:
-                    print("No se encontró el enlace o no tiene atributo href")
+                    print("No se encontró el enlace")
                     return None
             else:
                 print("No se encontró el div interior")

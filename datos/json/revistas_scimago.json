@@ -18,5 +18,153 @@
     ],
     "ISSN": "07434618, 14773848",
     "Homepage": "https://www.tandfonline.com/journals/iaac20"
+  },
+  "aacl bioflux": {
+    "Subject Area and Category": {
+      "Agricultural and Biological Sciences": [
+        "Aquatic Science",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "Environmental Science": [
+        "Management, Monitoring, Policy and Law",
+        "Water Science and Technology"
+      ]
+    },
+    "Publisher": [
+      "Bioflux Publishing House"
+    ],
+    "H-Index": "27",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "18448143, 18449166"
+  },
+  "aacn advanced critical care": {
+    "Subject Area and Category": {
+      "Medicine": [
+        "Emergency Medicine",
+        "Medicine (miscellaneous)"
+      ],
+      "Nursing": [
+        "Critical Care Nursing"
+      ]
+    },
+    "Publisher": [
+      "American Association of Critical-Care Nurses"
+    ],
+    "H-Index": "51",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "15597768, 15597776",
+    "Homepage": "http://aacnacconline.org/"
+  },
+  "aana journal": {
+    "Subject Area and Category": {
+      "Medicine": [
+        "Anesthesiology and Pain Medicine",
+        "Medicine (miscellaneous)"
+      ],
+      "Nursing": [
+        "Advanced and Specialized Nursing",
+        "Medical and Surgical Nursing"
+      ]
+    },
+    "Publisher": [
+      "AANA Publishing Inc."
+    ],
+    "H-Index": "38",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "00946354, 21625239",
+    "Homepage": "https://www.aana.com/publications/aana-journal"
+  },
+  "aao journal": {
+    "Subject Area and Category": {
+      "Health Professions": [
+        "Complementary and Manual Therapy"
+      ],
+      "Medicine": [
+        "Complementary and Alternative Medicine"
+      ],
+      "Nursing": [
+        "Advanced and Specialized Nursing"
+      ]
+    },
+    "Publisher": [
+      "American Academy of Osteopathy"
+    ],
+    "H-Index": "5",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "23755717, 23755776",
+    "Homepage": "https://www.academyofosteopathy.org/aao-journal"
+  },
+  "aaps journal": {
+    "Subject Area and Category": {
+      "Pharmacology, Toxicology and Pharmaceutics": [
+        "Pharmaceutical Science"
+      ]
+    },
+    "Publisher": [
+      "Springer Science and Business Media Deutschland GmbH"
+    ],
+    "H-Index": "136",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "15507416",
+    "Homepage": "https://www.springer.com/journal/12248"
+  },
+  "aaps pharmscitech": {
+    "Subject Area and Category": {
+      "Agricultural and Biological Sciences": [
+        "Agronomy and Crop Science",
+        "Aquatic Science",
+        "Ecology, Evolution, Behavior and Systematics"
+      ],
+      "Environmental Science": [
+        "Ecology"
+      ],
+      "Medicine": [
+        "Medicine (miscellaneous)"
+      ],
+      "Pharmacology, Toxicology and Pharmaceutics": [
+        "Drug Discovery",
+        "Pharmaceutical Science"
+      ]
+    },
+    "Publisher": [
+      "Springer International Publishing AG"
+    ],
+    "H-Index": "123",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "15309932",
+    "Homepage": "https://www.springer.com/journal/12249"
+  },
+  "aatcc review": {
+    "Subject Area and Category": {
+      "Chemical Engineering": [
+        "Chemical Engineering (miscellaneous)"
+      ],
+      "Chemistry": [
+        "Chemistry (miscellaneous)"
+      ],
+      "Materials Science": [
+        "Materials Science (miscellaneous)"
+      ]
+    },
+    "Publisher": [
+      "American Association of Textile Chemists and Colorists"
+    ],
+    "Publication type": [
+      "Trade Journals"
+    ],
+    "ISSN": "15328813, 23305525",
+    "Homepage": "https://www.aatcc.org/pubs/review/#"
   }
 }

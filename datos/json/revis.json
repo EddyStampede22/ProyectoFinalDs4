@@ -1,28 +1,98 @@
 {
-    "2d materials": {
-      "areas": [
-        "CIENCIAS_BIO RADGRIDEXPORT",
-        "CIENCIAS_EXA RADGRIDEXPORT",
-        "ING RADGRIDEXPORT"
-      ],
-      "catalogos": [
-        "JCR_RADGRIDEXPORT",
-        "SCOPUS_RADGRIDEXPORT"
-      ]
-    },
-    "3 biotech": {
-      "areas": [
-        "CIENCIAS_BIO RADGRIDEXPORT"
-      ],
-      "catalogos": [
-        "JCR_RADGRIDEXPORT"
-      ]
-    },"aac: augmentative and alternative communication": {
+ "2d materials": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT",
+      "CIENCIAS_EXA RADGRIDEXPORT",
+      "ING RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT",
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "3 biotech": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT"
+    ]
+  },
+  "aac: augmentative and alternative communication": {
     "areas": [
       "CIENCIAS_BIO RADGRIDEXPORT"
     ],
     "catalogos": [
       "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aacl bioflux": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT",
+      "ING RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aacn advanced critical care": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aana journal": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aao journal": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aaohn journal": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT",
+      "CIENCIAS_SOC RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT"
+    ]
+  },
+  "aaps journal": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT",
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aaps pharmscitech": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT",
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  },
+  "aatcc review": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT",
+      "ING RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "JCR_RADGRIDEXPORT"
     ]
   }
 }
