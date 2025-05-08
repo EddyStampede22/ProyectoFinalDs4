@@ -106,6 +106,70 @@ def extraer_enlace(url_busqueda):
         else:
             print("No se encontró el div exterior")
             return None
+
+def extraer_datos_finales(url_final):
+    datos_revista = {}
+    soup = get_soup(url_final)
+    if soup:
+       main_content=soup.find('div', class_='background')
+       if main_content:
+            segundo_div = main_content.find('div', class_='journalgrid')
+            if segundo_div:
+                divs=segundo_div.find_all('div')
+                for div in divs:
+                    if div.find('h2'):
+                        h2=div.find('h2').text.strip()
+                        if h2=="Subject Area and Category":
+                            datos_revista[h2]={}
+                            li=div.find_all('li',style='display: inline-block;')
+                            for i in li:
+                                if i.find('a'):
+                                    a=i.find('a').text.strip()
+                                    datos_revista[h2][a]=[]
+                                    if i.find('ul',class_='treecategory'):
+                                        categoria=i.find('ul',class_='treecategory').find_all('li')
+                                        for j in categoria:
+                                            if j.find('a'):
+                                                b=j.find('a').text.strip()
+                                                datos_revista[h2][a].append(b)
+                        elif h2=="Publisher":
+                            datos_revista[h2]=[]
+                            p=div.find_all('p')
+                            for i in p:
+                                if i.find('a'):
+                                    a=i.find('a').text.strip()
+                                    datos_revista[h2].append(a)
+                        elif h2=="SJR 2024":
+                            otrah=div.find_all('p')
+                            datos_revista["H-Index"]= otrah[1].text.strip()
+
+                        elif h2=="Publication type":
+                            datos_revista[h2]=[]
+                            p=div.find_all('p')
+                            for i in p:
+                                    a=i.text.strip()
+                                    datos_revista[h2].append(a)
+                        
+                        elif h2=="ISSN":
+                            p=div.find_all('p')
+                            for i in p:
+                                    a=i.text.strip()
+                                    datos_revista[h2]=a
+                        elif h2=="Information":
+                            p=div.find_all('p')
+                            for i in p:
+                                    if i.text.strip() =="Homepage":
+                                        a=i.find('a')['href']
+                                        datos_revista["Homepage"]=a
+                    
+
+
+                            
+    return datos_revista
+                            
+                        
+
+
 if __name__ == "__main__":
     url = (
         "https://www.scimagojr.com/"
@@ -113,9 +177,8 @@ if __name__ == "__main__":
     url_busqueda = (
         "https://www.scimagojr.com/journalsearch.php?q=+"
     )
-    palabra="Yi Qi Yi Biao Xue Bao/Chinese Journal of Scientific Instrument"
+    palabra="AAC: Augmentative and Alternative Communication"
     nueva_palabra=url_busqueda+palabra.replace(" ", "+").lower()
-    print(nueva_palabra)
     palabra_clave=extraer_enlace(nueva_palabra)
     busqueda_maxima=url+palabra_clave
-    print(busqueda_maxima)
+    extraer_datos_finales(busqueda_maxima)
