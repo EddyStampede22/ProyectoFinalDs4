@@ -120,7 +120,7 @@ def crear_diccionario_revistas(carpeta_base):
     
     return revistas
 
-def guardar_como_json(datos, carpeta_destino, nombre_archivo):
+def guardar_como_json(datos:dict, nombre_archivo:str):
     """
     Guarda un diccionario como archivo JSON.
     
@@ -129,25 +129,16 @@ def guardar_como_json(datos, carpeta_destino, nombre_archivo):
         carpeta_destino (str): Carpeta donde se guardará el archivo JSON
         nombre_archivo (str): Nombre del archivo JSON
     """
-    # Crear la carpeta de destino si no existe
-    os.makedirs(carpeta_destino, exist_ok=True)
-    
-    # Ruta completa del archivo
-    ruta_archivo = os.path.join(carpeta_destino, nombre_archivo)
     
     # Guardar como JSON con formato legible
-    with open(ruta_archivo, 'w', encoding='utf-8') as f:
+    with open(nombre_archivo, 'w', encoding='utf-8') as f:
         json.dump(datos, f, ensure_ascii=False, indent=2)
     
-    print(f"Archivo JSON guardado exitosamente en: {ruta_archivo}")
+    print("Archivo JSON guardado exitosamente!")
 
 def main():
     # Carpeta base donde se encuentran las subcarpetas 'areas' y 'catalogos'
     carpeta_base = "datos\csv"
-    
-    # Carpeta de destino para el archivo JSON
-    carpeta_json = "datos\json"
-    
     try:
         # Crear el diccionario de revistas
         print("Procesando archivos CSV...")
@@ -170,7 +161,7 @@ def main():
             print(f"  {i+1}. '{titulo}': {info}")
         
         # Guardar como JSON
-        guardar_como_json(revistas, carpeta_json, "revistas.json")
+        guardar_como_json(revistas, "revistas.json")
         
     except Exception as e:
         print(f"Error en el procesamiento: {e}")

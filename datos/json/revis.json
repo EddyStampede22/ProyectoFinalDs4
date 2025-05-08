@@ -17,5 +17,12 @@
       "catalogos": [
         "JCR_RADGRIDEXPORT"
       ]
-    }
+    },"aac: augmentative and alternative communication": {
+    "areas": [
+      "CIENCIAS_BIO RADGRIDEXPORT"
+    ],
+    "catalogos": [
+      "SCOPUS_RADGRIDEXPORT"
+    ]
+  }
 }

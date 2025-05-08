@@ -1,0 +1,69 @@
+{
+  "2d materials": {
+    "Subject Area and Category": {
+      "Engineering": [
+        "Mechanical Engineering",
+        "Mechanics of Materials"
+      ],
+      "Materials Science": [
+        "Materials Science (miscellaneous)",
+        "Nanoscience and Nanotechnology"
+      ]
+    },
+    "Publisher": [
+      "Wiley-Blackwell"
+    ],
+    "H-Index": "675",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "09359648, 15214095",
+    "Homepage": "https://onlinelibrary.wiley.com/journal/15214095"
+  },
+  "3 biotech": {
+    "Subject Area and Category": {
+      "Biochemistry, Genetics and Molecular Biology": [
+        "Biotechnology",
+        "Molecular Medicine"
+      ],
+      "Chemical Engineering": [
+        "Bioengineering"
+      ],
+      "Engineering": [
+        "Biomedical Engineering"
+      ],
+      "Immunology and Microbiology": [
+        "Applied Microbiology and Biotechnology"
+      ]
+    },
+    "Publisher": [
+      "Nature Research"
+    ],
+    "H-Index": "531",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "10870156, 15461696",
+    "Homepage": "https://www.nature.com/nbt/"
+  },
+  "aac: augmentative and alternative communication": {
+    "Subject Area and Category": {
+      "Health Professions": [
+        "Speech and Hearing"
+      ],
+      "Medicine": [
+        "Medicine (miscellaneous)",
+        "Rehabilitation"
+      ]
+    },
+    "Publisher": [
+      "Taylor and Francis Ltd."
+    ],
+    "H-Index": "69",
+    "Publication type": [
+      "Journals"
+    ],
+    "ISSN": "07434618, 14773848",
+    "Homepage": "https://www.tandfonline.com/journals/iaac20"
+  }
+}
