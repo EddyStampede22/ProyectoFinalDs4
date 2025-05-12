@@ -323,7 +323,7 @@ if __name__ == "__main__":
     
     # Cargar datos existentes
     revistas = leer_json_seguro("revistas.json")  
-    catalogo = leer_json_seguro("revistas_scimago_parcial_20000.json") or {}
+    catalogo = leer_json_seguro("revistas_scimago_final.json") or {}
     
     # Verificar que se cargaron correctamente
     if not revistas:
@@ -381,7 +381,7 @@ if __name__ == "__main__":
     if resultados:
         # Combinar con el catálogo existente
         catalogo_actualizado = {**catalogo, **resultados}
-        leer_csv.guardar_como_json(catalogo_actualizado, "revistas_scimago_parcial_20000.json")
+        leer_csv.guardar_como_json(catalogo_actualizado, "revistas_scimago_final.json")
         logging.info(f"Proceso completado. Revistas encontradas: {contador['encontrados']}")
         logging.info(f"Revistas no encontradas: {contador['no_encontrados']}")
     else:
