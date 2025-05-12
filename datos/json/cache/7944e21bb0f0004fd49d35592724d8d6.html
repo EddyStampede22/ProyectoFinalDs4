@@ -1,0 +1,130 @@
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>SJR - Journal Search</title>
+<meta content="width=device-width, user-scalable=no" name="viewport">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css"/>
+<link href="./gridcss/grid.css" rel="stylesheet" type="text/css"/>
+<link href="./gridcss/sjr.css" rel="stylesheet" type="text/css"/>
+<link href="favicon.ico" rel="shortcut icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#da532c" name="msapplication-TileColor"/>
+<meta content="#ffffff" name="theme-color"/>
+<link href="./multisitebar/multisite.css" rel="stylesheet" type="text/css">
+<script src="./js/raceme.min.js"></script>
+<script src="./js/papaparse.min.js"></script>
+<script src="./js/Dataset.min.js"></script>
+<script src="./js/Axis.min.js"></script>
+<script src="./js/Elements.min.js"></script>
+<script src="./js/Frame.min.js"></script>
+<script src="./js/Properties.min.js"></script>
+<script src="./js/View.min.js"></script>
+<script src="./js/Utils.min.js"></script>
+<script src="./js/Player.min.js"></script>
+<script src="./js/Legend.min.js"></script>
+<script src="./js/tooltip.min.js"></script>
+<script src="./js/cola.min.js"></script>
+<script src="./gridcss/grid.js"></script>
+<script src="./js/mainmenu.js"></script>
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<!-- desactivado -->
+<!-- End Cookie Consent plugin -->
+</link></meta></head>
+<body>
+<!-- cookieconsent  -->
+<!--<script src="js/countries_cookie.js"></script>
+<script src="js/cookieconsent.js?v=6"></script> **** -->
+<!-- To check analytics or marketing or both cookies -->
+<!--<script src="js/checkcookiescategories.js?v=3"></script>  **** -->
+<!-- end cookie consent -->
+<aside class="multisitebar">
+<div class="multisitebar_central">
+<div class="siteslinks">
+<a class="sjrlink currentsite" href="https://www.scimagojr.com"><img alt="SCImago Journal &amp; Country Rank" src="https://www.scimagojr.com/multisitebar/sjr.png"/><span class="multisite_tooltip">SCImago Journal Country &amp; Rank</span></a>
+<a class="scimagoirlink" href="https://www.scimagoir.com"><img alt="SCImago Institutions Rankings" src="https://www.scimagojr.com/multisitebar/sir.png"/><span class="multisite_tooltip">SCImago Institutions Rankings</span></a>
+<a class="scimagomedialink" href="https://www.scimagomedia.com"><img alt="SCImago Media Rankings" src="https://www.scimagojr.com/multisitebar/logo-white-128.png"/><span class="multisite_tooltip">SCImago Media Rankings</span></a>
+<a class="siriberlink" href="https://www.scimagoiber.com"><img alt="SCImago Iber" src="https://www.scimagojr.com/multisitebar/siriber.png"/><span class="multisite_tooltip">SCImago Iber</span></a>
+<a class="srcrlink" href="https://www.scimagorc.com"><img alt="SCImago Research Centers Ranking" src="https://www.scimagojr.com/multisitebar/srcr.png"/><span class="multisite_tooltip">SCImago Research Centers Ranking</span></a>
+<a class="graphicalink" href="https://www.graphica.app"><img alt="SCImago Graphica" src="https://www.scimagojr.com/multisitebar/graphica.png"/><span class="multisite_tooltip">SCImago Graphica</span></a>
+<a class="epilink" href="https://www.scimagoepi.com"><img alt="Ediciones Profesionales de la Información " src="https://www.scimagojr.com/multisitebar/epi.png"/><span class="multisite_tooltip">Ediciones Profesionales de la Información</span></a>
+</div>
+<div id="multisitebar_scimagolablink">
+<a href="https://www.scimagolab.com"><img alt="SCImago Lab" class="multisitebar_scimagolablink_mobile" src="https://www.scimagojr.com/multisitebar/scimagolab_mobile.png"/><img alt="SCImago Lab" class="multisitebar_scimagolablink_desktop" src="https://www.scimagojr.com/multisitebar/scimagolab.png"/></a>
+</div>
+</div>
+</aside>
+<!-- <div class="related_sites"><span class="related_sites_text">also developed by scimago:</span> <a href="https://www.scimagoir.com"><img src="./img/siricon.png" alt="" />Scimago Institutions Rankings</a></div>  -->
+<div class="header"><a href=".\" title="home">
+<img alt="SJR" id="logo" src="./img/logo.png"/>
+<div id="tag">Scimago Journal &amp; Country Rank</div>
+</a>
+<form action="journalsearch.php" id="searchbox" method="get">
+<input id="searchinput" name="q" onblur="if (this.value=='') {this.value='Enter Journal Title, ISSN or Publisher Name';}" onfocus="if(this.value == 'Enter Journal Title, ISSN or Publisher Name') { this.value = ''; }" type="text" value="Enter Journal Title, ISSN or Publisher Name"/>
+<input id="searchbutton" type="submit" value="">
+</input></form>
+</div>
+<div id="menu_boton" style="cursor: pointer;"><img alt="menu" src="./img/menu.png"/> menu</div><div id="mainmenu"><ul><li><a href="index.php">Home</a></li><li><a href="journalrank.php">Journal Rankings</a></li><li><a href="journalvalue.php">Journal Value</a></li><li><a href="countryrank.php">Country Rankings</a></li><li><a href="viztools.php">Viz Tools</a></li><li><a href="help.php">Help</a></li><li><a href="aboutus.php">About Us</a></li></ul></div>
+<script data-domain="scimagojr.com" defer="" src="https://plausible.scimago.es/js/script.js"></script>
+<!-- adblocker Adsense
+<script async src="https://fundingchoicesmessages.google.com/i/pub-7636113250813806?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+
+
+-->
+<div class="journaldescription colblock">
+<form action="journalsearch.php" id="searchboxresults" method="get">
+<input id="searchinput" name="q" onblur="if (this.value=='') {this.value='Enter Journal Title, ISSN or Publisher Name';}" onfocus="if(this.value == 'Enter Journal Title, ISSN or Publisher Name') { this.value = ''; }" type="text" value="energy and environment"/>
+<input id="searchbutton" type="submit" value=""/>
+</form>
+<div class="pagination" style="font-size: 14px;font-weight: 500;color: rgb(140,140,140);margin-bottom:40px;">41 - 60 of 127<div class="pagination_buttons"><a class="" href="journalsearch.php?q=energy and environment&amp;page=2&amp;total_size=127"><img src="img/pag_left.png" title="previous"/></a><a class="" href="journalsearch.php?q=energy and environment&amp;page=4&amp;total_size=127"><img src="img/pag_right.png" title="next"/></a></div></div>
+<div class="search_results">
+<!-- <a href="journalsearch.php?q=16590&tip=sid&clean=0"><span class="jrnlname">Lancet, The</span>United Kingdom<br />Elsevier Limited</a> -->
+<a href="journalsearch.php?q=19900193885&amp;tip=sid&amp;clean=0"><span class="jrnlname">3rd ISESEE 2011 - International Symposium and Exhibition in Sustainable Energy and Environment</span>United States<br/></a>
+<a href="journalsearch.php?q=7900153123&amp;tip=sid&amp;clean=0"><span class="jrnlname">23rd Annual International Pittsburgh Coal Conference, PCC - Coal-Energy, Environment and Sustainable Development</span>United States<br/></a>
+<a href="journalsearch.php?q=19900191921&amp;tip=sid&amp;clean=0"><span class="jrnlname">Recent Researches in Energy and Environment - 6th IASME / WSEAS International Conference on Energy and Environment, EE'11</span>United States<br/></a>
+<a href="journalsearch.php?q=21100207602&amp;tip=sid&amp;clean=0"><span class="jrnlname">22nd International Conference, PLEA 2005: Passive and Low Energy Architecture - Environmental Sustainability: The Challenge of Awareness in Developing Societies, Proceedings</span>Romania<br/></a>
+<a href="journalsearch.php?q=21100198202&amp;tip=sid&amp;clean=0"><span class="jrnlname">IAQVEC 2007 Proceedings - 6th International Conference on Indoor Air Quality, Ventilation and Energy Conservation in Buildings: Sustainable Built Environment</span>United States<br/></a>
+<a href="journalsearch.php?q=21100838733&amp;tip=sid&amp;clean=0"><span class="jrnlname">2017 IEEE Workshop on Environmental, Energy, and Structural Monitoring Systems, EESMS 2017 - Proceedings</span>United States<br/></a>
+<a href="journalsearch.php?q=19600157741&amp;tip=sid&amp;clean=0"><span class="jrnlname">2009 IEEE Workshop on Environmental, Energy, and Structural Monitoring Systems, EESMS 2009 - Proceedings</span>United States<br/></a>
+<a href="journalsearch.php?q=19700182128&amp;tip=sid&amp;clean=0"><span class="jrnlname">Nanotechnology 2010: Bio Sensors, Instruments, Medical, Environment and Energy - Technical Proceedings of the 2010 NSTI Nanotechnology Conference and Expo, NSTI-Nanotech 2010</span>United States<br/></a>
+<a href="journalsearch.php?q=21100338353&amp;tip=sid&amp;clean=0"><span class="jrnlname">ICMREE 2013 - Proceedings: 2013 International Conference on Materials for Renewable Energy and Environment</span>United States<br/></a>
+<a href="journalsearch.php?q=21100322093&amp;tip=sid&amp;clean=0"><span class="jrnlname">Proceedings of the 24th International Conference on Efficiency, Cost, Optimization, Simulation and Environmental Impact of Energy Systems, ECOS 2011</span>Netherlands<br/></a>
+<a href="journalsearch.php?q=21100864701&amp;tip=sid&amp;clean=0"><span class="jrnlname">30th International Conference on Efficiency, Cost, Optimization, Simulation and Environmental Impact of Energy Systems, ECOS 2017</span>Hungary<br/></a>
+<a href="journalsearch.php?q=21100379900&amp;tip=sid&amp;clean=0"><span class="jrnlname">ECOS 2009 - 22nd International Conference on Efficiency, Cost, Optimization, Simulation and Environmental Impact of Energy Systems</span>Brazil<br/></a>
+<a href="journalsearch.php?q=21100283761&amp;tip=sid&amp;clean=0"><span class="jrnlname">2013 IEEE Workshop on Environmental, Energy and Structural Monitoring Systems, EESMS 2013 - Proceedings</span>United States<br/></a>
+<a href="journalsearch.php?q=21100497072&amp;tip=sid&amp;clean=0"><span class="jrnlname">Proceedings of the 23rd International Conference on Efficiency, Cost, Optimization, Simulation, and Environmental Impact of Energy Systems, ECOS 2010</span>Finland<br/></a>
+<a href="journalsearch.php?q=19700188261&amp;tip=sid&amp;clean=0"><span class="jrnlname">EESMS 2010 - 2010 IEEE Worskshop on Environmental, Energy, and Structural Monitoring Systems, Proceedings</span>United States<br/></a>
+<a href="journalsearch.php?q=21100377704&amp;tip=sid&amp;clean=0"><span class="jrnlname">ECOS 2008 - Proceedings of the 21st International Conference on Efficiency, Cost, Optimization, Simulation and Environmental Impact of Energy Systems</span>Poland<br/></a>
+<a href="journalsearch.php?q=21100329554&amp;tip=sid&amp;clean=0"><span class="jrnlname">Shale Energy Engineering 2014: Technical Challenges, Environmental Issues, and Public Policy - Proceedings of the 2014 Shale Energy Engineering Conference</span>United States<br/></a>
+<a href="journalsearch.php?q=21100871646&amp;tip=sid&amp;clean=0"><span class="jrnlname">EESMS 2018 - Environmental, Energy, and Structural Monitoring Systems, Proceedings</span>United States<br/></a>
+<a href="journalsearch.php?q=51288&amp;tip=sid&amp;clean=0"><span class="jrnlname">Energy and the Environment - Proceedings of the International Conference on Energy and the Environment</span>China<br/></a>
+<a href="journalsearch.php?q=21100349541&amp;tip=sid&amp;clean=0"><span class="jrnlname">Proceedings of the 27th International Conference on Efficiency, Cost, Optimization, Simulation and Environmental Impact of Energy Systems, ECOS 2014</span>Finland<br/></a>
+<!-- 
+<div class="pagination" style="font-size: 14px;font-weight: 500;color: rgb(140,140,140);margin-top:40px;">1 - 50 of 1981
+<div class="pagination_buttons">
+<a href="#" class="disabled"><img src="img/pag_left.png" title="previous" /></a>
+<a href="#" class=""><img src="img/pag_right.png" title="next" /></a>
+</div>
+</div>
+ -->
+</div>
+<div class="pagination" style="font-size: 14px;font-weight: 500;color: rgb(140,140,140);margin-bottom:40px;">41 - 60 of 127<div class="pagination_buttons"><a class="" href="journalsearch.php?q=energy and environment&amp;page=2&amp;total_size=127"><img src="img/pag_left.png" title="previous"/></a><a class="" href="journalsearch.php?q=energy and environment&amp;page=4&amp;total_size=127"><img src="img/pag_right.png" title="next"/></a></div></div>
+</div>
+
+<div class="foot">
+<div class="colblock">
+<a class="logofooter" href="http://www.scimagolab.com">Developed by:<br/><img alt="Scimago Lab" src="./img/logo_footer.png"/></a>
+<a class="logofooter" href="http://www.scopus.com">Powered by:<br/><img alt="Powered by scopus" src="./img/scopus.png"/></a>
+<p>Follow us on <a href="https://twitter.com/ScimagoJR">@ScimagoJR</a><br/><br/><a href="http://www.scimagolab.com">Scimago Lab</a>, Copyright 2007-2025. Data Source: <a href="http://www.scopus.com">Scopus®</a></p>
+<img alt="Est modus in rebus (There is a proper measure in things). Horatio." id="tagline" src="./img/estmodusinrebus.png" title="Est modus in rebus (There is a proper measure in things). Horatio."/>
+<!--<p><a class="nav-link ccb__edit" href="#">Cookie settings</a></p>
+    <p><a href="https://www.scimagojr.com/cookie-policies.php">Cookie Policy</a></p>-->
+<p><a href="https://www.scimagojr.com/legal-notice.php">Legal Notice</a></p>
+<p><a href="https://www.scimagojr.com/privacy-policy.php">Privacy Policy</a></p>
+</div>
+</div>
+</body>
+</html>

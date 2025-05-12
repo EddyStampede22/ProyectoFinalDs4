@@ -1,0 +1,1868 @@
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>International Journal of Architectonic, Spatial, and Environmental Design</title>
+<meta content="width=device-width, user-scalable=no" name="viewport">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css"/>
+<link href="./gridcss/gridv2.css" rel="stylesheet" type="text/css"/>
+<link href="./gridcss/sjr.css?2021" rel="stylesheet" type="text/css"/>
+<link href="./gridcss/sjrjournal.css" rel="stylesheet" type="text/css"/>
+<link href="./wp_comments_css/comments-styles.css" rel="stylesheet" type="text/css"/><!-- WP Comments styles -->
+<link href="./gridcss/comments.css" rel="stylesheet" type="text/css"/>
+<link href="favicon.ico" rel="shortcut icon"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#da532c" name="msapplication-TileColor"/>
+<meta content="#ffffff" name="theme-color"/>
+<link href="./multisitebar/multisite.css" rel="stylesheet" type="text/css">
+<script src="./js/raceme.min.js"></script>
+<script src="./js/papaparse.min.js"></script>
+<script src="./js/Dataset.min.js"></script>
+<script src="./js/Axis.min.js"></script>
+<script src="./js/Elements.min.js"></script>
+<script src="./js/Frame.min.js"></script>
+<script src="./js/Properties.min.js"></script>
+<script src="./js/View.min.js"></script>
+<script src="./js/Utils.min.js"></script>
+<!-- <script src="./js/Player.min.js"></script>-->
+<script src="./js/Legend.min.js"></script>
+<script src="./js/tooltip.min.js"></script>
+<!--<script src="./js/cola.min.js"></script>-->
+<script src="./gridcss/gridv2.js"></script>
+<script src="./js/mainmenu.js"></script>
+<script src="./js/related_journals.js?v=2"></script>
+<script src="./js/dropdown.js?v=1"></script>
+<script type="text/javascript">
+   main(function () {
+
+      if (by('id:join_conversation')) {
+        by('id:join_conversation').clic(function (e) {
+          e.preventDefault();
+          by('id:wp-comments-response').animate(1000).ease('inout').topOffset(0);
+          return false;
+        });
+      }
+        
+  
+        var settings_sjr={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"SJR",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"SJR",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+        var settings_totaldocs={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(122,195,106)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Documents",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Documents",
+              property:"tooltip",
+               tooltip_format:"[value]"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+        var settings_citesperdoc={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            filter_alpha:0,
+           default_area:50,
+           legend_position:"bottom",
+           colors:{'Cites / Doc. (2 years)':'rgb(56, 133, 200)','Cites / Doc. (3 years)':'rgb(127, 180, 224)','Cites / Doc. (4 years)':'rgb(191, 218, 240)'}
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Cites per document",
+              property:"color",
+              legend:true,
+              label:""
+            },
+            {
+              variable:"Cites per document",
+              property:"tooltip"
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ],
+          filters:[
+            {
+              "variable":"Cites per document"
+            }
+          ]
+        };
+        var settings_quartiles={
+          general:{
+            padding:10,
+            default_area:500,
+            default_alpha:0.9,
+            colors:{'Q1':'rgb(164, 207, 99)','Q2':'rgb(232, 213, 89)','Q3':'rgb(251, 163,83)','Q4':'rgb(221,90,78)'},
+            default_shape:"filled rectangle",
+            default_border_width:1
+          },
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              show_title:false,
+              show_ticks:false,
+               show_line:false,
+              padding:0
+            },
+            {
+              variable:"Category",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+               show_line:false,
+              padding:0
+            },
+            {
+              variable:"Quartile",
+              property:"color"
+            },
+            {
+              variable:"Quartile",
+              property:"tooltip"
+            }
+
+          ]
+        };
+
+
+        var settings_citesselfcites={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)",
+            colors:{"Total Cites":"rgb(122,195,106)","Self Cites":"rgb(237, 125, 115)"}
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+              
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              padding:0,
+              show_title:false,
+              show_ticks:false,
+              show_line:false
+            },
+            {
+              "variable":"Cites",
+              "property":"color"
+            },
+            {
+              variable:"Cites",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Year",
+              property:"connection",
+              connection_type:"line",
+              alpha:0.8
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ]
+        };
+
+        var settings_extcitesperdoc={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)",
+            colors:{"External Cites per document":"rgb(122,195,106)","Cites per document":"rgb(56, 133, 200)"}
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              "variable":"Cites",
+              "property":"color"
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Cites",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ]
+        };
+
+        var settings_international={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(122,195,106)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"International Collaboration",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"International Collaboration",
+              property:"tooltip",
+               tooltip_format:"[value]%"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+
+         var settings_citable={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:1,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)",
+            colors:{"Citable documents":"rgb(122,195,106)","Non-citable documents":"rgb(237, 125, 115)"},
+            bar_width:0.6
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+              
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              padding:0,
+              show_title:false,
+              show_ticks:false,
+              show_line:false
+            },
+            {
+              "variable":"Documents",
+              "property":"color"
+            },
+            {
+              variable:"Documents",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Year",
+              property:"connection",
+              connection_type:"both",
+              alpha:0.8
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ]
+        };
+
+
+        var settings_uncited={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:1,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)",
+            colors:{"Cited documents":"rgb(122,195,106)","Uncited documents":"rgb(237, 125, 115)"},
+            bar_width:0.6
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+              
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              padding:0,
+              show_title:false,
+              show_ticks:false,
+              show_line:false
+            },
+            {
+              "variable":"Documents",
+              "property":"color"
+            },
+            {
+              variable:"Documents",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Year",
+              property:"connection",
+              connection_type:"both",
+              alpha:0.8
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ]
+        };
+
+        var settings_female={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(122,195,106)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Female Percent",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Female Percent",
+              property:"tooltip",
+              tooltip_format:"[value]%"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+        var settings_overton={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)",
+            colors:{"Overton":"rgb(122,195,106)"}
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              "variable":"Documents",
+              "property":"color"
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Documents",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": [value]"
+            }
+          ]
+        };
+
+        var settings_sdg={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(231, 118, 66)"
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Value",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              "variable":"Documents",
+              "property":"color"
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Documents",
+              property:"tooltip"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            },
+            {
+              variable:"Value",
+              property:"tooltip",
+              tooltip_format:": $[value]"
+            }
+          ]
+        };
+
+        var settings_apc={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(56, 133, 200)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Est. APC (USD)",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Est. APC (USD)",
+              property:"tooltip",
+              tooltip_format:"$[value]"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+        var settings_value={
+          general: {
+            padding:10,
+            default_shape:"none",
+            default_width:3,
+            default_area:400,
+            default_color:"rgb(56, 133, 200)"
+            
+          },  
+          grammar: [
+            {
+              variable:"Year",
+              property:"axis_x",
+              legend:false,
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              padding:0
+            },
+            {
+              variable:"Est. value (USD)",
+              property:"axis_y",
+              show_title:false,
+              show_ticks:false,
+              show_line:false,
+              show_grid_lines:true
+            },
+            {
+              variable:"Year",
+              property:"connection"
+            },
+            {
+              variable:"Est. value (USD)",
+              property:"tooltip",
+              tooltip_format:"$[value]"
+            },
+            {
+              variable:"Year",
+              property:"tooltip",
+              tooltip_format:" ([value])"
+            }
+          ]
+        };
+
+
+        //var datasjr="Year;SJR\n1999;0.499\n2000;0.165\n2001;0.162\n2002;0.123\n2003;0.109\n2004;0.134\n2005;0.217\n2006;0.15\n2007;0.352\n2008;0.182\n2009;0.294\n2010;0.771\n2011;0.188\n2012;0.439\n2013;0.475";
+        var datasjr = "Year;SJR\n2013;0.101\n2014;0.110\n2015;0.100\n2016;0.101\n2017;0.123\n2018;0.102\n2019;0.103\n2020;0.101\n2021;0.131\n2022;0.129\n2023;0.102\n2024;0.141";
+
+        var dssjr=new viz.Dataset({
+          data:datasjr,
+          datatypes:{
+            'Year':'YYYY'
+          }
+        }).done(function () {
+            new viz.View('svgsjr', this, settings_sjr);
+        });
+
+
+    var datatotaldocs = "Year;Documents\n2012;28\n2013;11\n2014;22\n2015;10\n2016;13\n2017;10\n2018;13\n2019;16\n2020;14\n2021;23\n2022;31\n2023;3\n2024;17";
+
+    var dstotaldocs=new viz.Dataset({data:datatotaldocs,datatypes:{'Year':'YYYY'}})
+    .done(function () {
+      new viz.View('svgtotaldocs', this, settings_totaldocs);
+    });   
+
+        //var datacitesperdoc="Cites per document;Year;Value\nCites / Doc. (4 years);1999;0.2\nCites / Doc. (4 years);2000;0.15\nCites / Doc. (4 years);2001;0.2\nCites / Doc. (4 years);2002;0.12\nCites / Doc. (4 years);2003;0.09\nCites / Doc. (4 years);2004;0.09\nCites / Doc. (4 years);2005;0.18\nCites / Doc. (4 years);2006;0.1\nCites / Doc. (4 years);2007;0.28\nCites / Doc. (4 years);2008;0.17\nCites / Doc. (4 years);2009;0.39\nCites / Doc. (4 years);2010;0.82\nCites / Doc. (4 years);2011;0.48\nCites / Doc. (4 years);2012;0.55\nCites / Doc. (4 years);2013;0.55\nCites / Doc. (3 years);1999;0.2\nCites / Doc. (3 years);2000;0.17\nCites / Doc. (3 years);2001;0.24\nCites / Doc. (3 years);2002;0.13\nCites / Doc. (3 years);2003;0.06\nCites / Doc. (3 years);2004;0.07\nCites / Doc. (3 years);2005;0.2\nCites / Doc. (3 years);2006;0.11\nCites / Doc. (3 years);2007;0.24\nCites / Doc. (3 years);2008;0.14\nCites / Doc. (3 years);2009;0.37\nCites / Doc. (3 years);2010;0.95\nCites / Doc. (3 years);2011;0.43\nCites / Doc. (3 years);2012;0.6\nCites / Doc. (3 years);2013;0.45\nCites / Doc. (2 years);1999;0.19\nCites / Doc. (2 years);2000;0.23\nCites / Doc. (2 years);2001;0.11\nCites / Doc. (2 years);2002;0.1\nCites / Doc. (2 years);2003;0\nCites / Doc. (2 years);2004;0.09\nCites / Doc. (2 years);2005;0.22\nCites / Doc. (2 years);2006;0.11\nCites / Doc. (2 years);2007;0.23\nCites / Doc. (2 years);2008;0.13\nCites / Doc. (2 years);2009;0.28\nCites / Doc. (2 years);2010;0.86\nCites / Doc. (2 years);2011;0.48\nCites / Doc. (2 years);2012;0.5\nCites / Doc. (2 years);2013;0.49";
+        var datacitesperdoc = "Cites per document;Year;Value\nCites / Doc. (4 years);2012;0.000\nCites / Doc. (4 years);2013;0.000\nCites / Doc. (4 years);2014;0.026\nCites / Doc. (4 years);2015;0.016\nCites / Doc. (4 years);2016;0.085\nCites / Doc. (4 years);2017;0.071\nCites / Doc. (4 years);2018;0.073\nCites / Doc. (4 years);2019;0.152\nCites / Doc. (4 years);2020;0.154\nCites / Doc. (4 years);2021;0.094\nCites / Doc. (4 years);2022;0.167\nCites / Doc. (4 years);2023;0.071\nCites / Doc. (4 years);2024;0.282\nCites / Doc. (3 years);2012;0.000\nCites / Doc. (3 years);2013;0.000\nCites / Doc. (3 years);2014;0.026\nCites / Doc. (3 years);2015;0.016\nCites / Doc. (3 years);2016;0.093\nCites / Doc. (3 years);2017;0.089\nCites / Doc. (3 years);2018;0.091\nCites / Doc. (3 years);2019;0.139\nCites / Doc. (3 years);2020;0.103\nCites / Doc. (3 years);2021;0.093\nCites / Doc. (3 years);2022;0.189\nCites / Doc. (3 years);2023;0.074\nCites / Doc. (3 years);2024;0.175\nCites / Doc. (2 years);2012;0.000\nCites / Doc. (2 years);2013;0.000\nCites / Doc. (2 years);2014;0.026\nCites / Doc. (2 years);2015;0.000\nCites / Doc. (2 years);2016;0.094\nCites / Doc. (2 years);2017;0.043\nCites / Doc. (2 years);2018;0.130\nCites / Doc. (2 years);2019;0.130\nCites / Doc. (2 years);2020;0.103\nCites / Doc. (2 years);2021;0.067\nCites / Doc. (2 years);2022;0.135\nCites / Doc. (2 years);2023;0.056\nCites / Doc. (2 years);2024;0.206";
+
+        var dscitesperdoc=new viz.Dataset({
+          data:datacitesperdoc,
+          datatypes:{
+            'Year':'YYYY'
+          }
+        }).done(function () {
+            new viz.ViewGroup(this).add('svgcitesperdoc',settings_citesperdoc);
+        });
+
+        //var dataquartiles="Category;Year;Quartile\nArts and Humanities (miscellaneous);1999;Q2\nArts and Humanities (miscellaneous);2000;Q3\nArts and Humanities (miscellaneous);2001;Q3\nArts and Humanities (miscellaneous);2002;Q3\nArts and Humanities (miscellaneous);2003;Q3\nArts and Humanities (miscellaneous);2004;Q3\nArts and Humanities (miscellaneous);2005;Q3\nArts and Humanities (miscellaneous);2006;Q3\nArts and Humanities (miscellaneous);2007;Q2\nArts and Humanities (miscellaneous);2008;Q3\nArts and Humanities (miscellaneous);2009;Q2\nArts and Humanities (miscellaneous);2010;Q2\nArts and Humanities (miscellaneous);2011;Q3\nArts and Humanities (miscellaneous);2012;Q2\nArts and Humanities (miscellaneous);2013;Q2\nBuilding and Construction;1999;Q1\nBuilding and Construction;2000;Q3\nBuilding and Construction;2001;Q2\nBuilding and Construction;2002;Q4\nBuilding and Construction;2003;Q4\nBuilding and Construction;2004;Q2\nBuilding and Construction;2005;Q2\nBuilding and Construction;2006;Q3\nBuilding and Construction;2007;Q3\nBuilding and Construction;2008;Q2\nBuilding and Construction;2009;Q3\nBuilding and Construction;2010;Q4\nBuilding and Construction;2011;Q3\nBuilding and Construction;2012;Q2\nBuilding and Construction;2013;Q1\nCivil and Structural Engineering;1999;Q1\nCivil and Structural Engineering;2000;Q2\nCivil and Structural Engineering;2001;Q2\nCivil and Structural Engineering;2002;Q1\nCivil and Structural Engineering;2003;Q2\nCivil and Structural Engineering;2004;Q3\nCivil and Structural Engineering;2005;Q3\nCivil and Structural Engineering;2006;Q4\nCivil and Structural Engineering;2007;Q3\nCivil and Structural Engineering;2008;Q2\nCivil and Structural Engineering;2009;Q2\nCivil and Structural Engineering;2010;Q2\nCivil and Structural Engineering;2011;Q1\nCivil and Structural Engineering;2012;Q2\nCivil and Structural Engineering;2013;Q1\nMechanical Engineering;1999;Q4\nMechanical Engineering;2000;Q4\nMechanical Engineering;2001;Q3\nMechanical Engineering;2002;Q3\nMechanical Engineering;2003;Q2\nMechanical Engineering;2004;Q2\nMechanical Engineering;2005;Q3\nMechanical Engineering;2006;Q3\nMechanical Engineering;2007;Q3\nMechanical Engineering;2008;Q2\nMechanical Engineering;2009;Q2\nMechanical Engineering;2010;Q3\nMechanical Engineering;2011;Q3\nMechanical Engineering;2012;Q2\nMechanical Engineering;2013;Q2";
+        var dataquartiles = "Category;Year;Quartile\nArchitecture;2013;Q4\nArchitecture;2014;Q3\nArchitecture;2015;Q4\nArchitecture;2016;Q4\nArchitecture;2017;Q3\nArchitecture;2018;Q4\nArchitecture;2019;Q4\nArchitecture;2020;Q4\nArchitecture;2021;Q3\nArchitecture;2022;Q3\nArchitecture;2023;Q4\nArchitecture;2024;Q3\nUrban Studies;2013;Q4\nUrban Studies;2014;Q4\nUrban Studies;2015;Q4\nUrban Studies;2016;Q4\nUrban Studies;2017;Q4\nUrban Studies;2018;Q4\nUrban Studies;2019;Q4\nUrban Studies;2020;Q4\nUrban Studies;2021;Q4\nUrban Studies;2022;Q4\nUrban Studies;2023;Q4\nUrban Studies;2024;Q4\nVisual Arts and Performing Arts;2013;Q3\nVisual Arts and Performing Arts;2014;Q2\nVisual Arts and Performing Arts;2015;Q4\nVisual Arts and Performing Arts;2016;Q3\nVisual Arts and Performing Arts;2017;Q2\nVisual Arts and Performing Arts;2018;Q3\nVisual Arts and Performing Arts;2019;Q3\nVisual Arts and Performing Arts;2020;Q3\nVisual Arts and Performing Arts;2021;Q2\nVisual Arts and Performing Arts;2022;Q2\nVisual Arts and Performing Arts;2023;Q4\nVisual Arts and Performing Arts;2024;Q2";
+        
+        var dsquartiles=new viz.Dataset({data:dataquartiles,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgquartiles', this, settings_quartiles);
+          }); 
+                
+        //var datacitesselfcites="Cites;Year;Value\nSelf Cites;1999;1\nSelf Cites;2000;2\nSelf Cites;2001;1\nSelf Cites;2002;3\nSelf Cites;2003;0\nSelf Cites;2004;0\nSelf Cites;2005;8\nSelf Cites;2006;3\nSelf Cites;2007;4\nSelf Cites;2008;3\nSelf Cites;2009;1\nSelf Cites;2010;10\nSelf Cites;2011;3\nSelf Cites;2012;15\nSelf Cites;2013;4\nExternal Cites;1999;10\nExternal Cites;2000;7\nExternal Cites;2001;12\nExternal Cites;2002;3\nExternal Cites;2003;3\nExternal Cites;2004;3\nExternal Cites;2005;3\nExternal Cites;2006;3\nExternal Cites;2007;11\nExternal Cites;2008;6\nExternal Cites;2009;23\nExternal Cites;2010;43\nExternal Cites;2011;25\nExternal Cites;2012;29\nExternal Cites;2013;35\n";
+        var datacitesselfcites = "Cites;Year;Value\nSelf Cites;2012;0\nSelf Cites;2013;0\nSelf Cites;2014;0\nSelf Cites;2015;0\nSelf Cites;2016;0\nSelf Cites;2017;0\nSelf Cites;2018;0\nSelf Cites;2019;0\nSelf Cites;2020;0\nSelf Cites;2021;2\nSelf Cites;2022;0\nSelf Cites;2023;0\nSelf Cites;2024;3\nTotal Cites;2012;0\nTotal Cites;2013;0\nTotal Cites;2014;1\nTotal Cites;2015;1\nTotal Cites;2016;4\nTotal Cites;2017;4\nTotal Cites;2018;3\nTotal Cites;2019;5\nTotal Cites;2020;4\nTotal Cites;2021;4\nTotal Cites;2022;10\nTotal Cites;2023;5\nTotal Cites;2024;10";
+
+        var dscitesselfcites=new viz.Dataset({data:datacitesselfcites,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgcitesselfcites', this, settings_citesselfcites);
+
+          });
+
+        //var dataextcitesperdoc="Cites;Year;Value\nExternal Cites per document;1999;0.18\nExternal Cites per document;2000;0.13\nExternal Cites per document;2001;0.21\nExternal Cites per document;2002;0.06\nExternal Cites per document;2003;0.06\nExternal Cites per document;2004;0.06\nExternal Cites per document;2005;0.05\nExternal Cites per document;2006;0.054\nExternal Cites per document;2007;0.16\nExternal Cites per document;2008;0.08\nExternal Cites per document;2009;0.32\nExternal Cites per document;2010;0.71\nExternal Cites per document;2011;0.35\nExternal Cites per document;2012;0.36\nExternal Cites per document;2013;0.37\nCites per document;1999;0.2\nCites per document;2000;0.17\nCites per document;2001;0.24\nCites per document;2002;0.13\nCites per document;2003;0.06\nCites per document;2004;0.07\nCites per document;2005;0.2\nCites per document;2006;0.11\nCites per document;2007;0.24\nCites per document;2008;0.14\nCites per document;2009;0.37\nCites per document;2010;0.95\nCites per document;2011;0.43\nCites per document;2012;0.6\nCites per document;2013;0.45";
+    var dataextcitesperdoc = "Cites;Year;Value\nExternal Cites per document;2012;0\nExternal Cites per document;2013;0.000\nExternal Cites per document;2014;0.026\nExternal Cites per document;2015;0.016\nExternal Cites per document;2016;0.093\nExternal Cites per document;2017;0.089\nExternal Cites per document;2018;0.091\nExternal Cites per document;2019;0.139\nExternal Cites per document;2020;0.103\nExternal Cites per document;2021;0.047\nExternal Cites per document;2022;0.189\nExternal Cites per document;2023;0.074\nExternal Cites per document;2024;0.123\nCites per document;2012;0.000\nCites per document;2013;0.000\nCites per document;2014;0.026\nCites per document;2015;0.016\nCites per document;2016;0.093\nCites per document;2017;0.089\nCites per document;2018;0.091\nCites per document;2019;0.139\nCites per document;2020;0.103\nCites per document;2021;0.093\nCites per document;2022;0.189\nCites per document;2023;0.074\nCites per document;2024;0.175";
+         var dsextcitesperdoc=new viz.Dataset({data:dataextcitesperdoc,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgexternalcitesperdoc', this, settings_extcitesperdoc);
+          });
+
+
+          //var datainternationalcollaboration="Year;International Collaboration\n1999;0\n2000;5\n2001;0\n2002;5.88\n2003;17.65\n2004;10\n2005;5.56\n2006;3.57\n2007;4.55\n2008;25\n2009;16.67\n2010;9.38\n2011;20.69\n2012;15.63\n2013;13.33";
+          var datainternationalcollaboration = "Year;International Collaboration\n2012;10.71\n2013;0.00\n2014;0.00\n2015;10.00\n2016;7.69\n2017;20.00\n2018;0.00\n2019;0.00\n2020;0.00\n2021;17.39\n2022;12.90\n2023;0.00\n2024;11.76";
+
+          var dsinternationalcollaboration=new viz.Dataset({data:datainternationalcollaboration,datatypes:{'Year':'YYYY'}})
+            .done(function () {
+              new viz.View('svginternational', this, settings_international);
+            });
+
+          //var datacitabledocuments="Documents;Year;Value\nNon-citable documents;1999;0\nNon-citable documents;2000;0\nNon-citable documents;2001;1\nNon-citable documents;2002;1\nNon-citable documents;2003;1\nNon-citable documents;2004;0\nNon-citable documents;2005;0\nNon-citable documents;2006;1\nNon-citable documents;2007;3\nNon-citable documents;2008;5\nNon-citable documents;2009;5\nNon-citable documents;2010;4\nNon-citable documents;2011;5\nNon-citable documents;2012;6\nNon-citable documents;2013;7\nCitable documents;1999;55\nCitable documents;2000;52\nCitable documents;2001;54\nCitable documents;2002;47\nCitable documents;2003;48\nCitable documents;2004;46\nCitable documents;2005;54\nCitable documents;2006;54\nCitable documents;2007;63\nCitable documents;2008;63\nCitable documents;2009;65\nCitable documents;2010;56\nCitable documents;2011;65\nCitable documents;2012;73\nCitable documents;2013;86";
+          var datacitabledocuments = "Documents;Year;Value\nNon-citable documents;2012;0\nNon-citable documents;2013;0\nNon-citable documents;2014;0\nNon-citable documents;2015;0\nNon-citable documents;2016;0\nNon-citable documents;2017;0\nNon-citable documents;2018;0\nNon-citable documents;2019;0\nNon-citable documents;2020;0\nNon-citable documents;2021;0\nNon-citable documents;2022;0\nNon-citable documents;2023;1\nNon-citable documents;2024;1\nCitable documents;2012;0\nCitable documents;2013;28\nCitable documents;2014;39\nCitable documents;2015;61\nCitable documents;2016;43\nCitable documents;2017;45\nCitable documents;2018;33\nCitable documents;2019;36\nCitable documents;2020;39\nCitable documents;2021;43\nCitable documents;2022;53\nCitable documents;2023;67\nCitable documents;2024;56";
+
+          var dscitable=new viz.Dataset({data:datacitabledocuments,datatypes:{'Year':'YYYY'}})
+            .done(function () {
+              new viz.View('svgcitable',this,settings_citable);
+            });
+
+          //var datauncited="Documents;Year;Value\nUncited documents;1999;47\nUncited documents;2000;45\nUncited documents;2001;48\nUncited documents;2002;42\nUncited documents;2003;46\nUncited documents;2004;43\nUncited documents;2005;45\nUncited documents;2006;49\nUncited documents;2007;54\nUncited documents;2008;60\nUncited documents;2009;55\nUncited documents;2010;33\nUncited documents;2011;50\nUncited documents;2012;51\nUncited documents;2013;67\nCited documents;1999;8\nCited documents;2000;7\nCited documents;2001;7\nCited documents;2002;6\nCited documents;2003;3\nCited documents;2004;3\nCited documents;2005;9\nCited documents;2006;6\nCited documents;2007;12\nCited documents;2008;8\nCited documents;2009;15\nCited documents;2010;27\nCited documents;2011;20\nCited documents;2012;28\nCited documents;2013;26";
+      var datauncited = "Documents;Year;Value\nUncited documents;2012;0\nUncited documents;2013;28\nUncited documents;2014;38\nUncited documents;2015;60\nUncited documents;2016;39\nUncited documents;2017;41\nUncited documents;2018;31\nUncited documents;2019;32\nUncited documents;2020;35\nUncited documents;2021;39\nUncited documents;2022;45\nUncited documents;2023;64\nUncited documents;2024;49\nCited documents;2012;0\nCited documents;2013;0\nCited documents;2014;1\nCited documents;2015;1\nCited documents;2016;4\nCited documents;2017;4\nCited documents;2018;2\nCited documents;2019;4\nCited documents;2020;4\nCited documents;2021;4\nCited documents;2022;8\nCited documents;2023;4\nCited documents;2024;8";
+        
+          var dsuncited=new viz.Dataset({data:datauncited,datatypes:{'Year':'YYYY'}})
+            .done(function () {
+              new viz.View('svguncited',this,settings_uncited);
+            })
+               
+          var datafemale = "Year;Female Percent\n2012;40.82\n2013;50.00\n2014;52.94\n2015;61.54\n2016;30.77\n2017;52.38\n2018;40.91\n2019;45.45\n2020;33.33\n2021;43.40\n2022;40.00\n2023;40.00\n2024;50.00";
+          var dsdatafemale=new viz.Dataset({data:datafemale,datatypes:{'Year':'YYYY'}})
+            .done(function () {
+              new viz.View('svgfemale', this, settings_female);
+            });
+
+         var dataoverton = "Documents;Year;Value\nOverton;2012;0\nOverton;2013;1\nOverton;2014;0\nOverton;2015;0\nOverton;2016;0\nOverton;2017;0\nOverton;2018;0\nOverton;2019;0\nOverton;2020;0\nOverton;2021;0\nOverton;2022;0\nOverton;2023;0\nOverton;2024;0";
+         var dsoverton=new viz.Dataset({data:dataoverton,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgoverton', this, settings_overton);
+          });
+
+         var datasdg = "Documents;Year;Value\nSDG;2018;4\nSDG;2019;7\nSDG;2020;7\nSDG;2021;14\nSDG;2022;17\nSDG;2023;1\nSDG;2024;7";
+         var dssdg=new viz.Dataset({data:datasdg,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgsdg', this, settings_sdg);
+          });
+
+         var dataapc = "Year;Est. APC (USD)\n2012;\n2013;2181\n2014;2199\n2015;2192\n2016;2189\n2017;2205\n2018;2206\n2019;2200\n2020;2201\n2021;2223\n2022;2228\n2023;2228\n2024;2255";
+         var dsapc=new viz.Dataset({data:dataapc,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgapc', this, settings_apc);
+          });
+
+         var datavalue = "Year;Est. value (USD)\n2012;\n2013;23995\n2014;72567\n2015;94252\n2016;122601\n2017;145513\n2018;149974\n2019;136410\n2020;145261\n2021;168978\n2022;216093\n2023;193815\n2024;198406";
+         var dsvalue=new viz.Dataset({data:datavalue,datatypes:{'Year':'YYYY'}})
+          .done(function () {
+           new viz.View('svgvalue', this, settings_value);
+          });
+ 
+      
+        
+   
+    });
+  
+  </script>
+<script type="text/javascript">
+  window.blockScreen={
+  start:function () {
+    if (!by('id:blockscreen')) {
+      var bs=new Grape('div','html').id('blockscreen').addTo(by('body').item(0));
+      bs.seed.innerHTML='<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>';
+    }
+  },
+  end:function () {
+  if (by('id:blockscreen')) by('id:blockscreen').remove();
+  }
+  } 
+  </script>
+<!-- clickio -->
+<script type="text/javascript">
+  var adsbygoogle=window.adsbygoogle||[];
+  adsbygoogle.pauseAdRequests=1;
+  var consentCallbackQueue=function(e,o){var t=!1,n=!1;let a=[],g=!1,l=!1,s=function(){g=!0,a.map(function(e,o){void 0!==e&&(e(t,n),a[o]=void 0)})};return document.documentElement.addEventListener("clickioConsentEvent",function(o){var a;a=o.detail.state,l=!0,null===a?(t=!0,n=!0,s()):-1===a||(0===a?(t=!1,n=!1,s()):1===a&&(t=!!e.__lxG__consent__.getGoogleConsentMode(),n=!!e.__lxG__consent__.getPurposeOneAllowed(),s()))},!1),setTimeout(function(){l||document.documentElement.dispatchEvent(new CustomEvent("clickioConsentEvent",{detail:{state:null}}))},5e3),{push:function(e){g?e(t,n):a.push(e)}}}(window);
+  consentCallbackQueue.push(function(e,o){e&&(adsbygoogle.pauseAdRequests=0)});
+</script>
+<!-- Default Consent Mode config clickio-->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
+        'functionality_storage': 'granted',
+        'personalization_storage': 'granted',
+        'security_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'wait_for_update': 1500
+    });
+    gtag('consent', 'default', {
+        'region': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH'],
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'denied',
+        'personalization_storage': 'denied',
+        'security_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 1500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', false);
+    (function(){
+        const s={adStorage:{storageName:"ad_storage",serialNumber:0},analyticsStorage:{storageName:"analytics_storage",serialNumber:1},functionalityStorage:{storageName:"functionality_storage",serialNumber:2},personalizationStorage:{storageName:"personalization_storage",serialNumber:3},securityStorage:{storageName:"security_storage",serialNumber:4},adUserData:{storageName:"ad_user_data",serialNumber:5},adPersonalization:{storageName:"ad_personalization",serialNumber:6}};let c=localStorage.getItem("__lxG__consent__v2");if(c){c=JSON.parse(c);if(c&&c.cls_val)c=c.cls_val;if(c)c=c.split("|");if(c&&c.length&&typeof c[14]!==undefined){c=c[14].split("").map(e=>e-0);if(c.length){let t={};Object.values(s).sort((e,t)=>e.serialNumber-t.serialNumber).forEach(e=>{t[e.storageName]=c[e.serialNumber]?"granted":"denied"});gtag("consent","update",t)}}}
+        if(Math.random() < 0.05) {if (window.dataLayer && (window.dataLayer.some(e => e[0] === 'js' && e[1] instanceof Date) || window.dataLayer.some(e => e['event'] === 'gtm.js' && e['gtm.start'] == true ))) {document.head.appendChild(document.createElement('img')).src = "//clickiocdn.com/utr/gtag/?sid=240719";}}
+    })();
+</script>
+<!-- Clickio Consent Main tag -->
+<script async="" src="//clickiocmp.com/t/consent_240719.js" type="text/javascript"></script>
+<!-- clickio ancla -->
+<script async="" src="//s.clickiocdn.com/t/240719/360_light.js" type="text/javascript"></script>
+<!-- end clickio -->
+<script type="text/javascript">
+  var id_page_original = 21100258855;
+  </script>
+<!-- JS ENCARGADO DE GESTIONAR LOS COMENTARIOS DE SCIMAGOJR EN WORDPRESS -->
+<script src="./js/wp-control-comments.js?2024"></script>
+<!-- cookieconsent  -->
+<!--<script src="js/countries_cookie.js"></script>
+<script src="js/cookieconsent.js?v=6"></script> **** -->
+<!-- To check analytics or marketing or both cookies -->
+<!--<script src="js/checkcookiescategories.js?v=3"></script>  **** -->
+<!-- end cookie consent -->
+<aside class="multisitebar">
+<div class="multisitebar_central">
+<div class="siteslinks">
+<a class="sjrlink currentsite" href="https://www.scimagojr.com"><img alt="SCImago Journal &amp; Country Rank" src="https://www.scimagojr.com/multisitebar/sjr.png"/><span class="multisite_tooltip">SCImago Journal Country &amp; Rank</span></a>
+<a class="scimagoirlink" href="https://www.scimagoir.com"><img alt="SCImago Institutions Rankings" src="https://www.scimagojr.com/multisitebar/sir.png"/><span class="multisite_tooltip">SCImago Institutions Rankings</span></a>
+<a class="scimagomedialink" href="https://www.scimagomedia.com"><img alt="SCImago Media Rankings" src="https://www.scimagojr.com/multisitebar/logo-white-128.png"/><span class="multisite_tooltip">SCImago Media Rankings</span></a>
+<a class="siriberlink" href="https://www.scimagoiber.com"><img alt="SCImago Iber" src="https://www.scimagojr.com/multisitebar/siriber.png"/><span class="multisite_tooltip">SCImago Iber</span></a>
+<a class="srcrlink" href="https://www.scimagorc.com"><img alt="SCImago Research Centers Ranking" src="https://www.scimagojr.com/multisitebar/srcr.png"/><span class="multisite_tooltip">SCImago Research Centers Ranking</span></a>
+<a class="graphicalink" href="https://www.graphica.app"><img alt="SCImago Graphica" src="https://www.scimagojr.com/multisitebar/graphica.png"/><span class="multisite_tooltip">SCImago Graphica</span></a>
+<a class="epilink" href="https://www.scimagoepi.com"><img alt="Ediciones Profesionales de la Información " src="https://www.scimagojr.com/multisitebar/epi.png"/><span class="multisite_tooltip">Ediciones Profesionales de la Información</span></a>
+</div>
+<div id="multisitebar_scimagolablink">
+<a href="https://www.scimagolab.com"><img alt="SCImago Lab" class="multisitebar_scimagolablink_mobile" src="https://www.scimagojr.com/multisitebar/scimagolab_mobile.png"/><img alt="SCImago Lab" class="multisitebar_scimagolablink_desktop" src="https://www.scimagojr.com/multisitebar/scimagolab.png"/></a>
+</div>
+</div>
+</aside>
+<!-- <div class="related_sites"><span class="related_sites_text">also developed by scimago:</span> <a href="https://www.scimagoir.com"><img src="./img/siricon.png" alt="" />Scimago Institutions Rankings</a></div>  -->
+<div class="header"><a href=".\" title="home">
+<img alt="SJR" id="logo" src="./img/logo.png"/>
+<div id="tag">Scimago Journal &amp; Country Rank</div>
+</a>
+<form action="journalsearch.php" id="searchbox" method="get">
+<input id="searchinput" name="q" onblur="if (this.value=='') {this.value='Enter Journal Title, ISSN or Publisher Name';}" onfocus="if(this.value == 'Enter Journal Title, ISSN or Publisher Name') { this.value = ''; }" type="text" value="Enter Journal Title, ISSN or Publisher Name"/>
+<input id="searchbutton" type="submit" value="">
+</input></form>
+</div>
+<div id="menu_boton" style="cursor: pointer;"><img alt="menu" src="./img/menu.png"/> menu</div><div id="mainmenu"><ul><li><a href="index.php">Home</a></li><li><a href="journalrank.php">Journal Rankings</a></li><li><a href="journalvalue.php">Journal Value</a></li><li><a href="countryrank.php">Country Rankings</a></li><li><a href="viztools.php">Viz Tools</a></li><li><a href="help.php">Help</a></li><li><a href="aboutus.php">About Us</a></li></ul></div>
+<script data-domain="scimagojr.com" defer="" src="https://plausible.scimago.es/js/script.js"></script>
+<!-- adblocker Adsense
+<script async src="https://fundingchoicesmessages.google.com/i/pub-7636113250813806?ers=1"></script><script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+
+
+-->
+<style> 
+  #bg-adblocker {
+    display:none;
+  }
+  .ad-zone{ 
+  height: 1px; 
+  } 
+  .container-msg-blocker,
+  #adbExp{   
+    width: 50%;    
+    position: fixed;
+    color: rgb(32, 33, 36);
+    z-index: 9;    
+    padding: 40px;
+    background: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius:8px;
+    text-align: center;
+    width:400px;
+    max-width: calc(100% - 60px);
+    margin-left: calc(50% - 340px);
+    line-height: 180%;
+    max-width: 600px;
+    width: 90%;
+    
+  }
+
+  #msg_adblock_title,
+  #msg_adblock_title2,
+  #adblock_name{
+    font-size: 24px;   
+    margin-bottom: 0; 
+  }
+  #adblock_name{
+    letter-spacing: 0.4px;
+  }
+  #msg_adblock_title,
+  #msg,
+  #msg_adblock_footer{
+    /*color: rgb(95, 99, 104);*/
+    color:rgb(90, 94, 99);
+    line-height: 28px;
+  }
+  .adblocker_types{
+    font-weight: 600;
+    color: rgb(35, 36, 42);
+  }
+  .hidebt{
+    display: none;
+  }
+  input#refresh-page,
+  input#allow_ads_bt{
+    background-color: rgb(23, 78, 166);/*rgb(231, 118, 66);*/
+    color: white;
+    padding: 8px 28px;
+    font-weight: 600;
+    font-size: 16px;    
+    border-radius: 3px;
+    transition: background-color ease 0.25s;
+    border-color: transparent;
+    cursor: pointer;    
+    /*text-transform: uppercase;*/
+    letter-spacing: 0.1px;
+  }
+  #refresh-page:hover,
+  #allow_ads_bt:hover{
+    background-color: rgb(26, 89, 189);
+    
+    transition: background-color ease 0.25s;
+  }
+  #msg_adblocker_extentions{
+    font-size: 26px;   
+    line-height: 30px;
+  }
+
+  .fixed-bgrd{
+    position: fixed;
+    z-index: 9999;
+    height: 100%;
+    left: 0px;    
+    top: 0px;
+    align-items: center;
+    display: flex;    
+    width: 100%;    
+    background-color: #00000091;
+    
+  }
+  .steps_disable_adblocker{
+    text-align: left;
+  }
+  .hidediv{
+    display: none;
+  }
+
+
+@media screen and (max-width: 768px){ 
+
+
+  .container-msg-blocker, #adbExp{
+    margin-left:0;
+    width: calc(100% - 80px);
+
+  }
+}
+</style>
+<script type="text/javascript">
+
+  navigator.sayswho= (function(){
+    var ua= navigator.userAgent;
+    var tem; 
+    var M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    
+    if(/trident/i.test(M[1])){
+        tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE '+(tem[1] || '');
+    }
+    if(M[1]=== 'Chrome'){
+        tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    }
+    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+        
+    return M;
+})();
+
+  
+  window.addEventListener("load", function() {
+   
+  
+    let check_browser = navigator.sayswho;
+
+      
+    let x = document.querySelector(".ad-zone");     
+    let x_height = x.offsetHeight; 
+    let msg = document.getElementById("msg") 
+    let msg_ad_title = document.getElementById("msg_adblock_title");    
+    let adblock_name = document.getElementById("adblock_name");
+    let msg_ad_title2 = document.getElementById("msg_adblock_title2");
+
+    let msg_ad_footer = document.getElementById("msg_adblock_footer");
+
+    let wraper_msg = document.getElementById("wrap-blocker");
+    let refresh_bt = document.getElementById("refresh-page");
+    
+    let allow_ads_bt = document.getElementById("allow_ads_bt");
+    let bg_adblocker = document.getElementById("bg-adblocker");
+
+
+    let disable_anti_adblocker = 0;
+    
+    //Firefox "128.0esr"
+    if( typeof check_browser[0]!=='undefined' && check_browser[0] === 'Firefox' && typeof check_browser[1]!=='undefined' && parseInt(check_browser[1])< 130 ) disable_anti_adblocker = 1;   // test < 140
+    
+
+      
+    if(x_height || disable_anti_adblocker){ 
+      //console.log('NO mostrar aviso adblock');
+      bg_adblocker.outerHTML = "";
+      document.getElementById('ad_zone').outerHTML = "";
+    } 
+    else{ 
+      bg_adblocker.style.display = "inline-flex";    
+      msg_ad_title.innerText = "Welcome";// Please, turn your";
+      adblock_name.innerText = "Looks like your Ad Blocker is on";//"ADBLOCK";
+      //msg_ad_title2.innerText = "Ad Blocker is on";//" off!";
+      
+
+      //msg.innerText = "It looks like you're using an ad blocker. That's okay--who doesn't? But without advertising income, we can't keep making this site awesome.";
+      msg.innerHTML = "We rely on advertising to bring you our rankings. <br />Please, turn your Ad Blocker off";
+      msg_adblock_footer.innerText="Thank you!";
+      if(wraper_msg){
+        wraper_msg.classList.add("container-msg-blocker");
+        //if(refresh_bt) refresh_bt.classList.remove("hidebt");        
+        if(allow_ads_bt) allow_ads_bt.classList.remove("hidebt");
+        
+        if(bg_adblocker) bg_adblocker.classList.add("fixed-bgrd");
+        document.body.style = "overflow:hidden";
+        
+      }      
+    }
+  });
+
+  function show_steps_disable_adblocker(){
+    let adbExp = document.getElementById("adbExp");
+    if(adbExp) adbExp.classList.remove("hidediv");
+    
+
+  }
+
+
+</script>
+<div class="" id="bg-adblocker">
+<div data-nosnippet="" id="wrap-blocker"><p id="msg_adblock_title"></p>
+<p><strong id="adblock_name"></strong><span id="msg_adblock_title2"></span></p>
+<p id="msg"></p> <p id="msg_adblock_footer"></p>
+<input class="hidebt" id="allow_ads_bt" onclick="show_steps_disable_adblocker()" type="button" value="Allow Ads"/>
+<!--<input type="button" value="Refresh" onClick="window.location.reload()" id="refresh-page"  class="hidebt">-->
+</div>
+<div class="hidediv" data-nosnippet="" id="adbExp">
+<p id="msg_adblocker_extentions">You must have one of these extentions in you browser</p>
+<div>
+<span class="adblocker_types">AdBlock</span>, <span class="adblocker_types">AdBlock Plus</span>, <span class="adblocker_types">uBlock Origin</span> or <span class="adblocker_types">others</span>
+</div>
+<ol class="steps_disable_adblocker">
+<li> Go to your browser extentions and click the Ad blocker icon</li>
+<li> Select pause on this site, don't run on pages on this site, or some other similar option.</li>
+<li> Now you can refresh the page</li>
+</ol>
+<input class="" id="refresh-page" onclick="window.location.reload()" type="button" value="Refresh"/>
+</div>
+</div>
+<div class="ad-zone"> </div>
+<!--<script data-ad-client="ca-pub-7636113250813806" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7636113250813806"></script>
+</link></meta></head>
+<body>
+<script>
+      window.addEventListener("load", init_comments, true); 
+      function init_comments(){
+        callOutsideComments(parseInt(id_page_original));
+      }
+    </script>
+<div class="text_body" style="width:100%;padding-bottom:10px; text-align: center!important; overflow:hidden;">
+<!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+<!-- Top en Journals -->
+<ins class="adsbygoogle" data-ad-client="ca-pub-7636113250813806" data-ad-format="auto" data-ad-slot="3843785478" data-full-width-responsive="true" style="display:block"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="background">
+<div class="journaldescription colblock">
+<h1>
+    International Journal of Architectonic, Spatial, and Environmental Design  </h1>
+<div class="journalgrid">
+<div>
+<h2>Country</h2>
+<p>
+<a href="journalrank.php?country=US" title="view journal rank of United States">United States</a>
+<br/><br/><a class="sirlink" href="https://www.scimagoir.com/rankings.php?country=USA" title="visit SCImago Institutions Rankings - United States"><img alt="" src="img/sir_white.png"/>Universities and research institutions in United States</a>
+<br/><a class="sirlink" href="https://www.scimagomedia.com/rankings.php?country=United States" title="visit SCImago Media Rankings - United States"><img alt="" src="img/media_white.png"/>Media Ranking in United States</a>
+</p>
+</div>
+<div>
+<h2>Subject Area and Category</h2>
+<p><ul style="padding-left:0px"><li style="display: inline-block;"><a href="journalrank.php?area=1200" title="view journal rank from Arts and Humanities">Arts and Humanities</a><ul class="treecategory"><li><a href="journalrank.php?category=1213" title="view journal rank from Visual Arts and Performing Arts">Visual Arts and Performing Arts</a></li></ul></li></ul><ul style="padding-left:0px"><li style="display: inline-block;"><a href="journalrank.php?area=2200" title="view journal rank from Engineering">Engineering</a><ul class="treecategory"><li><a href="journalrank.php?category=2216" title="view journal rank from Architecture">Architecture</a></li></ul></li></ul><ul style="padding-left:0px"><li style="display: inline-block;"><a href="journalrank.php?area=3300" title="view journal rank from Social Sciences">Social Sciences</a><ul class="treecategory"><li><a href="journalrank.php?category=3322" title="view journal rank from Urban Studies">Urban Studies</a></li></ul></li></ul></p>
+</div>
+<div>
+<h2>Publisher</h2>
+<p>
+<a href="journalsearch.php?q=Common Ground Research Networks&amp;tip=pub" title="view all publisher's journals">Common Ground Research Networks</a>
+<br/>
+</p>
+</div>
+<div>
+<h2>SJR 2024</h2><p class="hindexnumber">0.141 <span class="Q2" style="font-size: 0.8em" title="best quartile for all subject categories">Q2</span></p>
+<h2>H-Index</h2>
+<p class="hindexnumber">5</p>
+</div>
+<div>
+<h2>Publication type</h2>
+<p>Journals</p>
+</div>
+<div>
+<h2>ISSN</h2>
+<p>23251662, 23251670</p>
+</div>
+<div>
+<h2>Coverage</h2>
+<p>2012-2025</p>
+</div>
+<div>
+<h2>Information</h2>
+<p><a href="https://cgscholar.com/bookstore/collections/common-ground-publishing/series/design-principles-practices?sub_series_id=the-international-journal-of-architectonic-spatial-and-environmental-design" id="question_journal" target="_blank">Homepage</a></p>
+<p><a href="https://cgscholar.com/cg_support/en/docs/38" id="question_journal" target="_blank">How to publish in this journal</a></p>
+</div>
+<div class="blank"></div>
+<div class="fullwidth">
+<h2>Scope</h2>
+      The primary interests of The International Journal of Architectonic, Spatial, and Environmental Design are in building design, landscape design, and sustainable design practices. As well as papers of a traditional scholarly type, this journal invites presentations of practice—including experimental forms of documentation and exegeses that can be interrogated with equal validity through a process of academic peer review. For instance, this might take the form of a series of images and plans, with explanatory notes that articulate with other, significantly similar or different—and explicitly referenced—places, sites, or material objects.        <a class="join_comments_button" href="#wp-comments-response" id="join_conversation"><img alt="" src="img/comments_icon_black.png">Join the conversation about this journal</img></a>
+</div>
+</div>
+</div>
+</div>
+<div class="dashboard">
+<div class="cell100x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+        Quartiles
+        </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgquartiles">
+</div>
+<div class="cellslide">
+<p>
+          The set of journals have been ranked according to their SJR and divided into four equal groups, four quartiles. Q1 (green) comprises the quarter of the journals with the highest values, Q2 (yellow) the second highest values, Q3 (orange) the third highest values and Q4 (red) the lowest values.
+          </p>
+<table><thead><tr><th>Category</th><th>Year</th><th>Quartile</th></tr></thead><tbody>
+<tr><td>Architecture</td><td>2013</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2014</td><td>Q3</td></tr>
+<tr><td>Architecture</td><td>2015</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2016</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2017</td><td>Q3</td></tr>
+<tr><td>Architecture</td><td>2018</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2019</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2020</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2021</td><td>Q3</td></tr>
+<tr><td>Architecture</td><td>2022</td><td>Q3</td></tr>
+<tr><td>Architecture</td><td>2023</td><td>Q4</td></tr>
+<tr><td>Architecture</td><td>2024</td><td>Q3</td></tr>
+<tr><td>Urban Studies</td><td>2013</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2014</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2015</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2016</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2017</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2018</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2019</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2020</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2021</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2022</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2023</td><td>Q4</td></tr>
+<tr><td>Urban Studies</td><td>2024</td><td>Q4</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2013</td><td>Q3</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2014</td><td>Q2</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2015</td><td>Q4</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2016</td><td>Q3</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2017</td><td>Q2</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2018</td><td>Q3</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2019</td><td>Q3</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2020</td><td>Q3</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2021</td><td>Q2</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2022</td><td>Q2</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2023</td><td>Q4</td></tr>
+<tr><td>Visual Arts and Performing Arts</td><td>2024</td><td>Q2</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+</div>
+<!-- Google Adsense in-article -->
+<div class="text_body" style="width:100%;padding-bottom:10px; text-align: center!important; overflow: hidden;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-7636113250813806" data-ad-format="fluid" data-ad-layout="in-article" data-ad-slot="7673314149" style="display:block; text-align:center;"></ins>
+<script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<!-- INICIO Revistas relacionadas -->
+<div id="related_journals">
+</div>
+<!-- END Revistas relacionadas -->
+<div class="dashboard">
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(231, 118, 66)"></div>SJR
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgsjr">
+</div>
+<div class="cellslide">
+<p>
+        The SJR is a size-independent prestige indicator that ranks journals by their 'average prestige per article'. It is based on the idea that 'all citations are not created equal'. SJR is a measure of scientific influence of journals that accounts for both the number of citations received by a journal and the importance or prestige of the journals where such citations come from
+    It measures the scientific influence of the average article in a journal, it expresses how central to the global scientific discussion an average article of the journal is.
+        </p>
+<table><thead><tr><th>Year</th><th>SJR</th></tr></thead><tbody>
+<tr><td>2013</td><td>0.101</td></tr>
+<tr><td>2014</td><td>0.110</td></tr>
+<tr><td>2015</td><td>0.100</td></tr>
+<tr><td>2016</td><td>0.101</td></tr>
+<tr><td>2017</td><td>0.123</td></tr>
+<tr><td>2018</td><td>0.102</td></tr>
+<tr><td>2019</td><td>0.103</td></tr>
+<tr><td>2020</td><td>0.101</td></tr>
+<tr><td>2021</td><td>0.131</td></tr>
+<tr><td>2022</td><td>0.129</td></tr>
+<tr><td>2023</td><td>0.102</td></tr>
+<tr><td>2024</td><td>0.141</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Total Documents
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgtotaldocs">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the number of published documents. All types of documents are considered, including citable and non citable documents.
+        </p>
+<table><thead><tr><th>Year</th><th>Documents</th></tr></thead><tbody>
+<tr><td>2012</td><td>28</td></tr>
+<tr><td>2013</td><td>11</td></tr>
+<tr><td>2014</td><td>22</td></tr>
+<tr><td>2015</td><td>10</td></tr>
+<tr><td>2016</td><td>13</td></tr>
+<tr><td>2017</td><td>10</td></tr>
+<tr><td>2018</td><td>13</td></tr>
+<tr><td>2019</td><td>16</td></tr>
+<tr><td>2020</td><td>14</td></tr>
+<tr><td>2021</td><td>23</td></tr>
+<tr><td>2022</td><td>31</td></tr>
+<tr><td>2023</td><td>3</td></tr>
+<tr><td>2024</td><td>17</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x2 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+        Citations per document
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgcitesperdoc">
+</div>
+<div class="cellslide">
+<p>
+        This indicator counts the number of citations received by documents from a journal and divides them by the total number of documents published in that journal. The chart shows the evolution of the average number of times documents published in a journal in the past two, three and four years have been cited in the current year. The two years line is equivalent to journal impact factor ™ (Thomson Reuters) metric.
+        </p>
+<table><thead><tr><th>Cites per document</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>Cites / Doc. (4 years)</td><td>2012</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2013</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2014</td><td>0.026</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2015</td><td>0.016</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2016</td><td>0.085</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2017</td><td>0.071</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2018</td><td>0.073</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2019</td><td>0.152</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2020</td><td>0.154</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2021</td><td>0.094</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2022</td><td>0.167</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2023</td><td>0.071</td></tr>
+<tr><td>Cites / Doc. (4 years)</td><td>2024</td><td>0.282</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2012</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2013</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2014</td><td>0.026</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2015</td><td>0.016</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2016</td><td>0.093</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2017</td><td>0.089</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2018</td><td>0.091</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2019</td><td>0.139</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2020</td><td>0.103</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2021</td><td>0.093</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2022</td><td>0.189</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2023</td><td>0.074</td></tr>
+<tr><td>Cites / Doc. (3 years)</td><td>2024</td><td>0.175</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2012</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2013</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2014</td><td>0.026</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2015</td><td>0.000</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2016</td><td>0.094</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2017</td><td>0.043</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2018</td><td>0.130</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2019</td><td>0.130</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2020</td><td>0.103</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2021</td><td>0.067</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2022</td><td>0.135</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2023</td><td>0.056</td></tr>
+<tr><td>Cites / Doc. (2 years)</td><td>2024</td><td>0.206</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Total Cites <div class="legendblock" style="background-color:rgb(237, 125, 115)"></div>Self-Cites
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgcitesselfcites">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the total number of citations and journal's self-citations received by a journal's published documents during the three previous years.<br/>
+        Journal Self-citation is defined as the number of citation from a journal citing article to articles published by the same journal.
+        </p>
+<table><thead><tr><th>Cites</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>Self Cites</td><td>2012</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2013</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2014</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2015</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2016</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2017</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2018</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2019</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2020</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2021</td><td>2</td></tr>
+<tr><td>Self Cites</td><td>2022</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2023</td><td>0</td></tr>
+<tr><td>Self Cites</td><td>2024</td><td>3</td></tr>
+<tr><td>Total Cites</td><td>2012</td><td>0</td></tr>
+<tr><td>Total Cites</td><td>2013</td><td>0</td></tr>
+<tr><td>Total Cites</td><td>2014</td><td>1</td></tr>
+<tr><td>Total Cites</td><td>2015</td><td>1</td></tr>
+<tr><td>Total Cites</td><td>2016</td><td>4</td></tr>
+<tr><td>Total Cites</td><td>2017</td><td>4</td></tr>
+<tr><td>Total Cites</td><td>2018</td><td>3</td></tr>
+<tr><td>Total Cites</td><td>2019</td><td>5</td></tr>
+<tr><td>Total Cites</td><td>2020</td><td>4</td></tr>
+<tr><td>Total Cites</td><td>2021</td><td>4</td></tr>
+<tr><td>Total Cites</td><td>2022</td><td>10</td></tr>
+<tr><td>Total Cites</td><td>2023</td><td>5</td></tr>
+<tr><td>Total Cites</td><td>2024</td><td>10</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>External Cites per Doc <div class="legendblock" style="background-color:rgb(56, 133, 200)"></div>Cites per Doc
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgexternalcitesperdoc">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the number of total citation per document and external citation per document (i.e. journal self-citations removed) received by a journal's published documents during the three previous years.
+    External citations are calculated by subtracting the number of self-citations from the total number of citations received by the journal’s documents.
+        </p>
+<table><thead><tr><th>Cites</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>External Cites per document</td><td>2012</td><td>0</td></tr>
+<tr><td>External Cites per document</td><td>2013</td><td>0.000</td></tr>
+<tr><td>External Cites per document</td><td>2014</td><td>0.026</td></tr>
+<tr><td>External Cites per document</td><td>2015</td><td>0.016</td></tr>
+<tr><td>External Cites per document</td><td>2016</td><td>0.093</td></tr>
+<tr><td>External Cites per document</td><td>2017</td><td>0.089</td></tr>
+<tr><td>External Cites per document</td><td>2018</td><td>0.091</td></tr>
+<tr><td>External Cites per document</td><td>2019</td><td>0.139</td></tr>
+<tr><td>External Cites per document</td><td>2020</td><td>0.103</td></tr>
+<tr><td>External Cites per document</td><td>2021</td><td>0.047</td></tr>
+<tr><td>External Cites per document</td><td>2022</td><td>0.189</td></tr>
+<tr><td>External Cites per document</td><td>2023</td><td>0.074</td></tr>
+<tr><td>External Cites per document</td><td>2024</td><td>0.123</td></tr>
+<tr><td>Cites per document</td><td>2012</td><td>0.000</td></tr>
+<tr><td>Cites per document</td><td>2013</td><td>0.000</td></tr>
+<tr><td>Cites per document</td><td>2014</td><td>0.026</td></tr>
+<tr><td>Cites per document</td><td>2015</td><td>0.016</td></tr>
+<tr><td>Cites per document</td><td>2016</td><td>0.093</td></tr>
+<tr><td>Cites per document</td><td>2017</td><td>0.089</td></tr>
+<tr><td>Cites per document</td><td>2018</td><td>0.091</td></tr>
+<tr><td>Cites per document</td><td>2019</td><td>0.139</td></tr>
+<tr><td>Cites per document</td><td>2020</td><td>0.103</td></tr>
+<tr><td>Cites per document</td><td>2021</td><td>0.093</td></tr>
+<tr><td>Cites per document</td><td>2022</td><td>0.189</td></tr>
+<tr><td>Cites per document</td><td>2023</td><td>0.074</td></tr>
+<tr><td>Cites per document</td><td>2024</td><td>0.175</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>% International Collaboration
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svginternational">
+</div>
+<div class="cellslide">
+<p>
+        International Collaboration accounts for the articles that have been produced by researchers from several countries. The chart shows the ratio of a journal's documents signed by researchers from more than one country; that is including more than one country address.
+        </p>
+<table><thead><tr><th>Year</th><th>International Collaboration</th></tr></thead><tbody>
+<tr><td>2012</td><td>10.71</td></tr>
+<tr><td>2013</td><td>0.00</td></tr>
+<tr><td>2014</td><td>0.00</td></tr>
+<tr><td>2015</td><td>10.00</td></tr>
+<tr><td>2016</td><td>7.69</td></tr>
+<tr><td>2017</td><td>20.00</td></tr>
+<tr><td>2018</td><td>0.00</td></tr>
+<tr><td>2019</td><td>0.00</td></tr>
+<tr><td>2020</td><td>0.00</td></tr>
+<tr><td>2021</td><td>17.39</td></tr>
+<tr><td>2022</td><td>12.90</td></tr>
+<tr><td>2023</td><td>0.00</td></tr>
+<tr><td>2024</td><td>11.76</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<!--
+ <div class="cell1x1 dynamiccell">
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6599342188870735"
+         data-ad-slot="2518688028"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+-->
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Citable documents <div class="legendblock" style="background-color:rgb(237, 125, 115)"></div>Non-citable documents
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgcitable">
+</div>
+<div class="cellslide">
+<p>Not every article in a journal is considered primary research and therefore "citable", this chart shows the ratio of a journal's articles including substantial research (research articles, conference papers and reviews) in three year windows vs. those documents other than research articles, reviews and conference papers.</p>
+<table><thead><tr><th>Documents</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>Non-citable documents</td><td>2012</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2013</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2014</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2015</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2016</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2017</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2018</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2019</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2020</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2021</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2022</td><td>0</td></tr>
+<tr><td>Non-citable documents</td><td>2023</td><td>1</td></tr>
+<tr><td>Non-citable documents</td><td>2024</td><td>1</td></tr>
+<tr><td>Citable documents</td><td>2012</td><td>0</td></tr>
+<tr><td>Citable documents</td><td>2013</td><td>28</td></tr>
+<tr><td>Citable documents</td><td>2014</td><td>39</td></tr>
+<tr><td>Citable documents</td><td>2015</td><td>61</td></tr>
+<tr><td>Citable documents</td><td>2016</td><td>43</td></tr>
+<tr><td>Citable documents</td><td>2017</td><td>45</td></tr>
+<tr><td>Citable documents</td><td>2018</td><td>33</td></tr>
+<tr><td>Citable documents</td><td>2019</td><td>36</td></tr>
+<tr><td>Citable documents</td><td>2020</td><td>39</td></tr>
+<tr><td>Citable documents</td><td>2021</td><td>43</td></tr>
+<tr><td>Citable documents</td><td>2022</td><td>53</td></tr>
+<tr><td>Citable documents</td><td>2023</td><td>67</td></tr>
+<tr><td>Citable documents</td><td>2024</td><td>56</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Cited documents <div class="legendblock" style="background-color:rgb(237, 125, 115)"></div>Uncited documents
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svguncited">
+</div>
+<div class="cellslide">
+<p>Ratio of a journal's items, grouped in three years windows, that have been cited at least once vs. those not cited during the following year.</p>
+<table><thead><tr><th>Documents</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>Uncited documents</td><td>2012</td><td>0</td></tr>
+<tr><td>Uncited documents</td><td>2013</td><td>28</td></tr>
+<tr><td>Uncited documents</td><td>2014</td><td>38</td></tr>
+<tr><td>Uncited documents</td><td>2015</td><td>60</td></tr>
+<tr><td>Uncited documents</td><td>2016</td><td>39</td></tr>
+<tr><td>Uncited documents</td><td>2017</td><td>41</td></tr>
+<tr><td>Uncited documents</td><td>2018</td><td>31</td></tr>
+<tr><td>Uncited documents</td><td>2019</td><td>32</td></tr>
+<tr><td>Uncited documents</td><td>2020</td><td>35</td></tr>
+<tr><td>Uncited documents</td><td>2021</td><td>39</td></tr>
+<tr><td>Uncited documents</td><td>2022</td><td>45</td></tr>
+<tr><td>Uncited documents</td><td>2023</td><td>64</td></tr>
+<tr><td>Uncited documents</td><td>2024</td><td>49</td></tr>
+<tr><td>Cited documents</td><td>2012</td><td>0</td></tr>
+<tr><td>Cited documents</td><td>2013</td><td>0</td></tr>
+<tr><td>Cited documents</td><td>2014</td><td>1</td></tr>
+<tr><td>Cited documents</td><td>2015</td><td>1</td></tr>
+<tr><td>Cited documents</td><td>2016</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2017</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2018</td><td>2</td></tr>
+<tr><td>Cited documents</td><td>2019</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2020</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2021</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2022</td><td>8</td></tr>
+<tr><td>Cited documents</td><td>2023</td><td>4</td></tr>
+<tr><td>Cited documents</td><td>2024</td><td>8</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>% Female Authors
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgfemale">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the percentage of female authors.
+        </p>
+<table><thead><tr><th>Year</th><th>Female Percent</th></tr></thead><tbody>
+<tr><td>2012</td><td>40.82</td></tr>
+<tr><td>2013</td><td>50.00</td></tr>
+<tr><td>2014</td><td>52.94</td></tr>
+<tr><td>2015</td><td>61.54</td></tr>
+<tr><td>2016</td><td>30.77</td></tr>
+<tr><td>2017</td><td>52.38</td></tr>
+<tr><td>2018</td><td>40.91</td></tr>
+<tr><td>2019</td><td>45.45</td></tr>
+<tr><td>2020</td><td>33.33</td></tr>
+<tr><td>2021</td><td>43.40</td></tr>
+<tr><td>2022</td><td>40.00</td></tr>
+<tr><td>2023</td><td>40.00</td></tr>
+<tr><td>2024</td><td>50.00</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Documents cited by public policy (Overton)
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgoverton">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the number of documents cited by public policy documents according to Overton database.
+        </p>
+<table><thead><tr><th>Documents</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>Overton</td><td>2012</td><td>0</td></tr>
+<tr><td>Overton</td><td>2013</td><td>1</td></tr>
+<tr><td>Overton</td><td>2014</td><td>0</td></tr>
+<tr><td>Overton</td><td>2015</td><td>0</td></tr>
+<tr><td>Overton</td><td>2016</td><td>0</td></tr>
+<tr><td>Overton</td><td>2017</td><td>0</td></tr>
+<tr><td>Overton</td><td>2018</td><td>0</td></tr>
+<tr><td>Overton</td><td>2019</td><td>0</td></tr>
+<tr><td>Overton</td><td>2020</td><td>0</td></tr>
+<tr><td>Overton</td><td>2021</td><td>0</td></tr>
+<tr><td>Overton</td><td>2022</td><td>0</td></tr>
+<tr><td>Overton</td><td>2023</td><td>0</td></tr>
+<tr><td>Overton</td><td>2024</td><td>0</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(122,195,106)"></div>Documents related to SDGs (UN)
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgsdg">
+</div>
+<div class="cellslide">
+<p>
+        Evolution of the number of documents related to Sustainable Development Goals defined by United Nations. Available from 2018 onwards.
+        </p>
+<table><thead><tr><th>Documents</th><th>Year</th><th>Value</th></tr></thead><tbody>
+<tr><td>SDG</td><td>2018</td><td>4</td></tr>
+<tr><td>SDG</td><td>2019</td><td>7</td></tr>
+<tr><td>SDG</td><td>2020</td><td>7</td></tr>
+<tr><td>SDG</td><td>2021</td><td>14</td></tr>
+<tr><td>SDG</td><td>2022</td><td>17</td></tr>
+<tr><td>SDG</td><td>2023</td><td>1</td></tr>
+<tr><td>SDG</td><td>2024</td><td>7</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(56, 133, 200)"></div>Estimated APC
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgapc">
+</div>
+<div class="cellslide">
+<p>
+        It estimates the article processing charges (APCs) a journal might charge, based on its visibility, prestige, and impact as measured by the SJR. It does not reflect the actual APC, but rather a calculated approximation based on journal quality.
+        </p>
+<table><thead><tr><th>Year</th><th>Est. APC (USD)</th></tr></thead><tbody>
+<tr><td>2012</td><td></td></tr>
+<tr><td>2013</td><td>2181</td></tr>
+<tr><td>2014</td><td>2199</td></tr>
+<tr><td>2015</td><td>2192</td></tr>
+<tr><td>2016</td><td>2189</td></tr>
+<tr><td>2017</td><td>2205</td></tr>
+<tr><td>2018</td><td>2206</td></tr>
+<tr><td>2019</td><td>2200</td></tr>
+<tr><td>2020</td><td>2201</td></tr>
+<tr><td>2021</td><td>2223</td></tr>
+<tr><td>2022</td><td>2228</td></tr>
+<tr><td>2023</td><td>2228</td></tr>
+<tr><td>2024</td><td>2255</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 dynamiccell">
+<div class="cellheader">
+<div class="celltitle">
+<div class="legendblock" style="background-color:rgb(56, 133, 200)"></div>Estimated financial value
+      </div>
+</div>
+<div class="cellcontent">
+<div class="cellslide" id="svgvalue">
+</div>
+<div class="cellslide">
+<p>
+        It represents the potential financial worth of a journal. It is obtained by multiplying the journal's Estimated APC by the total number of citable documents published over the past five years. This value reflects the hypothetical revenue a journal could generate based on its estimated publication costs and scholarly output.
+        </p>
+<table><thead><tr><th>Year</th><th>Est. value (USD)</th></tr></thead><tbody>
+<tr><td>2012</td><td></td></tr>
+<tr><td>2013</td><td>23995</td></tr>
+<tr><td>2014</td><td>72567</td></tr>
+<tr><td>2015</td><td>94252</td></tr>
+<tr><td>2016</td><td>122601</td></tr>
+<tr><td>2017</td><td>145513</td></tr>
+<tr><td>2018</td><td>149974</td></tr>
+<tr><td>2019</td><td>136410</td></tr>
+<tr><td>2020</td><td>145261</td></tr>
+<tr><td>2021</td><td>168978</td></tr>
+<tr><td>2022</td><td>216093</td></tr>
+<tr><td>2023</td><td>193815</td></tr>
+<tr><td>2024</td><td>198406</td></tr>
+</tbody></table> </div>
+</div>
+</div>
+<div class="cell1x1 transparentcell">
+<img alt="Scimago Journal &amp; Country Rank" class="imgwidget" src="journal_img.php?id=21100258855">
+<div class="widgetlegend"><div class="titlewidget">Show this widget in your own website</div><br/>
+        Just copy the code below and paste within your html code:
+        <input id="embed_code" name="embed_code" onclick="this.select();" readonly="" size="25" value='&lt;a href="https://www.scimagojr.com/journalsearch.php?q=21100258855&amp;amp;tip=sid&amp;amp;exact=no" title="SCImago Journal &amp;amp; Country Rank"&gt;&lt;img border="0" src="https://www.scimagojr.com/journal_img.php?id=21100258855" alt="SCImago Journal &amp;amp; Country Rank"  /&gt;&lt;/a&gt;'>
+</input></div>
+</img></div>
+<div class="cell1x1 transparentcell" style="overflow: hidden;">
+<img alt="" src="img/graphica_mockup.png" style="position: absolute;display: block;float: none;max-width: 100%;max-height: 100%;top:0px;right: -60px;">
+<div style="position: absolute;left: 0px;top: 0px;max-width: 52%;padding: 12px;text-shadow: 1px 1px 0px white, -1px -1px 0px white;">
+<img alt="" src="img/logo_graphica.png" style="width: 48px;vertical-align: middle;float: none;"/> <strong>SCImago Graphica</strong><br/>
+<div style="padding-left: 12px;padding-top: 12px;">Explore, visually communicate and make sense of data with our <strong><a href="https://www.graphica.app">new data visualization tool</a></strong>.
+      </div>
+</div>
+</img></div>
+</div>
+<div class="text_body" style="padding-left: 18px;padding-right: 18px"><div style="
+  
+    text-align: center;
+    padding: 16px;
+    display: block;
+    margin: auto;
+    color: rgb(45 45 45);
+    ">Metrics based on Scopus® data as of March 2025</div>
+</div>
+<!-- Google Adsense in-article -->
+<div class="text_body" style="width:100%;padding-bottom:10px; text-align: center!important; overflow: hidden;">
+<ins class="adsbygoogle" data-ad-client="ca-pub-7636113250813806" data-ad-format="fluid" data-ad-layout="in-article" data-ad-slot="7673314149" style="display:block; text-align:center;"></ins>
+<script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<!-- SECTION COMMENTS -->
+<div class="background" style="padding-bottom: 32px;">
+<div id="wp-comments-response"><div class="lds-dual-ring"></div><div class="LoadingCommentsLabel">Loading comments…</div></div>
+<div id="container-form-comment">
+<div class="hide" id="respond-comment-scimagojr">
+<div id="feedback_insert_comment"></div>
+<h3>Leave a comment</h3>
+<form id="form-submit-comment-scimagojr">
+<p>
+<label for="comment-scimagojr-name-user">Name</label>
+<input id="comment-scimagojr-name-user" name="comment-scimagojr-name-user" size="20" type="text">
+<span class="validation-form-messaje nonDisplay" id="nombre-validation">* Required</span>
+</input></p>
+<p>
+<label for="comment-scimagojr-email-user">Email<br/><span class="emailnote">(will not be published)</span></label>
+<input id="comment-scimagojr-email-user" name="comment-scimagojr-email-user" size="30" type="text"/>
+<span class="validation-form-messaje nonDisplay" id="email-validation">* Required</span>
+</p>
+<p>
+<textarea aria-required="true" cols="45" id="comment-scimagojr" name="comment-scimagojr" rows="8"></textarea>
+<span class="validation-form-messaje nonDisplay" id="textarea-validation">* Required</span>
+</p>
+<p class="form-submit">
+<div id="html_element"></div>
+<span class="validation-form-messaje nonDisplay" id="captcha-validation">* Required</span>
+<button class="hide" id="cancel_reply" type="button">Cancel</button>
+<input class="submit" id="submit-comment-scimagojr" name="submit-comment-scimagojr" onclick="addEventsListenerForm()" type="button" value="Submit"/>
+<input id="comment_scimagojr_post_ID" name="comment_scimagojr_post_ID" type="hidden" value=""/>
+<input id="comment_scimagojr_parent" name="comment_scimagojr_parent" type="hidden" value="0"/>
+</p>
+<p class="comments_rules">The users of Scimago Journal &amp; Country Rank have the possibility to dialogue through comments linked to a specific journal. The purpose is to have a forum in which general doubts about the processes of publication in the journal, experiences and other issues derived from the publication of papers are resolved. For topics on particular articles, maintain the dialogue through the usual channels with your editor.
+            </p>
+</form>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit">
+</script>
+</div>
+</div>
+</div>
+<!-- END SECTION COMMENTS-->
+<div class="foot">
+<div class="colblock">
+<a class="logofooter" href="http://www.scimagolab.com">Developed by:<br/><img alt="Scimago Lab" src="./img/logo_footer.png"/></a>
+<a class="logofooter" href="http://www.scopus.com">Powered by:<br/><img alt="Powered by scopus" src="./img/scopus.png"/></a>
+<p>Follow us on <a href="https://twitter.com/ScimagoJR">@ScimagoJR</a><br/><br/><a href="http://www.scimagolab.com">Scimago Lab</a>, Copyright 2007-2025. Data Source: <a href="http://www.scopus.com">Scopus®</a></p>
+<img alt="Est modus in rebus (There is a proper measure in things). Horatio." id="tagline" src="./img/estmodusinrebus.png" title="Est modus in rebus (There is a proper measure in things). Horatio."/>
+<!--<p><a class="nav-link ccb__edit" href="#">Cookie settings</a></p>
+    <p><a href="https://www.scimagojr.com/cookie-policies.php">Cookie Policy</a></p>-->
+<p><a href="https://www.scimagojr.com/legal-notice.php">Legal Notice</a></p>
+<p><a href="https://www.scimagojr.com/privacy-policy.php">Privacy Policy</a></p>
+</div>
+</div>
+</body>
+</html>

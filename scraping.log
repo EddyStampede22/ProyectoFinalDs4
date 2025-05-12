@@ -1,0 +1,12 @@
+2025-05-08 17:46:30,463 - ERROR - Error al leer el archivo revistas.json: [Errno 2] No such file or directory: 'revistas.json'
+2025-05-08 17:46:30,463 - ERROR - Error al leer el archivo revistas_scimago.json: [Errno 2] No such file or directory: 'revistas_scimago.json'
+2025-05-08 17:46:30,465 - ERROR - No se pudo cargar el archivo de revistas, terminando ejecución
+2025-05-09 08:40:49,924 - ERROR - Error al leer el archivo revistas.json: [Errno 2] No such file or directory: 'revistas.json'
+2025-05-09 08:40:49,924 - ERROR - Error al leer el archivo revistas_scimago_parcial_20000.json: [Errno 2] No such file or directory: 'revistas_scimago_parcial_20000.json'
+2025-05-09 08:40:49,926 - ERROR - No se pudo cargar el archivo de revistas, terminando ejecución
+2025-05-09 08:56:34,731 - ERROR - Error al leer el archivo revistas.json: [Errno 2] No such file or directory: 'revistas.json'
+2025-05-09 08:56:34,732 - ERROR - Error al leer el archivo revistas_scimago_parcial_20000.json: [Errno 2] No such file or directory: 'revistas_scimago_parcial_20000.json'
+2025-05-09 08:56:34,732 - ERROR - No se pudo cargar el archivo de revistas, terminando ejecución
+2025-05-09 16:43:20,844 - ERROR - Error al leer el archivo revistas.json: [Errno 2] No such file or directory: 'revistas.json'
+2025-05-09 16:43:20,846 - ERROR - Error al leer el archivo revistas_scimago_parcial_20000.json: [Errno 2] No such file or directory: 'revistas_scimago_parcial_20000.json'
+2025-05-09 16:43:20,846 - ERROR - No se pudo cargar el archivo de revistas, terminando ejecución

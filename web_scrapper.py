@@ -2,7 +2,6 @@
 y la guardará en un nuevo archivo JSON'''
 # importar las librerías necesarias
 import json
-import os
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -186,9 +185,9 @@ if __name__ == "__main__":
     url_busqueda = (
         "https://www.scimagojr.com/journalsearch.php?q=+"
     )
-    palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
-    revistas = leer_json_seguro("revis.json")  # libros es un dict: {titulo: {...}, ...}
-    catalogo = leer_json_seguro("revistas_scimago.json") # libros es un dict: {titulo: {...}, ...}
+    #palabra="YI QI YI BIAO XUE BAO/CHINESE JOURNAL OF SCIENTIFIC INSTRUMENT"
+    revistas = leer_json_seguro("revistas.json")  # libros es un dict: {titulo: {...}, ...}
+    catalogo = leer_json_seguro("revistas_scimago_20000.json") # libros es un dict: {titulo: {...}, ...}
     mis_revistas = {}
     #buscar_palabra=palabra.replace(" ", "+").lower()
     #print(buscar_palabra)
