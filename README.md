@@ -38,7 +38,7 @@ proyecto/
 │       ├── revistas.json (se generará)
 │       ├── revistas_scimago_final.json (se crea vació y después el programa lo actualizará finalizando)
 │   	├── scrapping.log (se generará)
-   	    └── ultimo_procesado.txt (se generará)
+        └── ultimo_procesado.txt (se generará)
 ```
 
 ## Paso 1: Preparación de los archivos CSV y estructura de directorios
@@ -86,7 +86,21 @@ Este programa lee el archivo JSON generado, busca información adicional en SCIM
    ```
    python ..\..\web_scrapper_mejorado.py
    ```
-4. El programa utilizará `revistas_scimago_final.json` en la carpeta `datos/json/` (carpeta actual) para generar la información obtenida de SCIMAGO.
+4. El programa utilizará `revistas_scimago_final.json` en la carpeta `datos/json/` (carpeta actual) para guardar toda la información obtenida de SCIMAGO.
+
+**Nota:** Si por ejemplo te quedaste en el archivo parcial `revistas_scimago_parcial_12000.json`, puedes cambiarle el nombre a 
+`revistas_scimago_final.json` y eliminar el otro `revistas_scimago_final.json` vació porque cuando continues no va unir toda la información ya que como el programa no finalizó, cuando lo vuelvas a correr y finalize, se unirá los datos con `revistas_scimago_final.json` vació y no con `revistas_scimago_parcial_12000.json`. Asi que, puedes cambiar el nombre al archivo parcial o bien poner el nombre del archivo parcial en la parte final del main en el programa `web_scrapper_mejorado.py`:
+```python
+# Guardar resultados finales
+    if resultados:
+        # Combinar con el catálogo existente
+        catalogo_actualizado = {**catalogo, **resultados}
+        leer_csv.guardar_como_json(catalogo_actualizado, "revistas_scimago_final.json")
+        logging.info(f"Proceso completado. Revistas encontradas: {contador['encontrados']}")
+        logging.info(f"Revistas no encontradas: {contador['no_encontrados']}")
+    else:
+        logging.info("No se encontraron revistas nuevas")
+```
 
 **Nota:** El web scraper utiliza un sistema de caché para evitar solicitudes repetidas. Los archivos de caché se guardan en la carpeta `datos/json/cache/` (subcarpeta de la carpeta actual). Si necesitas volver a realizar la búsqueda para alguna revista, elimina los archivos correspondientes de esta carpeta antes de ejecutar el programa. O puedes eliminar el archivo ultimo_procesado.txt
 
