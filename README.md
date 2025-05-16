@@ -157,4 +157,4 @@ Este programa lee el archivo JSON generado, busca información adicional en SCIM
 - También puedes cambiar el número de revistas para guardar el archivo parcial 
 
 
-### - Nota: Para este proyecto se utilizaron Asistentes Digitales (ChatGTP, Claude)
+### - Nota: Para este proyecto se utilizaron Asistentes Digitales (ChatGTP, Claude). También utilice como ayuda el código de `dolar_scrapper.py` para elaborar el programa `web_scrapper_mejorado.py`.
